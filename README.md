@@ -10,7 +10,7 @@ The Mwaghavul Language App is a comprehensive dictionary and translation tool de
 - **Cultural Context:** Gain insights into the cultural context of words and phrases.
 
 ## Technologies Used
-- **Flutter:** The app is built using Flutter, a framework for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- **Android Studio:** The app is developed using Android Studio, an integrated development environment for building natively compiled applications for mobile platforms from a single codebase.
 - **SQLite Database:** Utilized for storing and accessing language data offline.
 
 ## Installation
