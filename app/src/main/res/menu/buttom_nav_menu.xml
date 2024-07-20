@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/round_home_24"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/round_search_24"
+        android:title="@string/search"/>
+    <item
+        android:id="@+id/nav_bookmark"
+        android:icon="@drawable/round_star_outline_24"
+        android:title="@string/bookmark"/>
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/round_history_24"
+        android:title="@string/history"/>
+</menu>
