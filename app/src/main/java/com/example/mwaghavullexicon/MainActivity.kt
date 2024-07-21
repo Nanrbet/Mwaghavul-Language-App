@@ -1,6 +1,7 @@
 package com.example.mwaghavullexicon
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.nav_bookmark -> {openFragment(BookmarkFragment())
                         // Change the icon to filled star
                         item.setIcon(R.drawable.filled_star_24)}
-                R.id.nav_history -> openFragment(HomeFragment())
+                R.id.nav_history -> openFragment(HistoryFragment())
             }
             true
         }
@@ -85,4 +86,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fragmentTransaction.replace(R.id.main_fragment_container,  fragment)
         fragmentTransaction.commit()
     }
+
 }
