@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/round_translate_24"
+        android:orderInCategory="100"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item android:title="English - Mwaghavul"
+                android:id="@+id/english_mwaghavul"
+                android:orderInCategory="100"
+                app:showAsAction="never"/>
+            <item android:title="Mwaghavul - English"
+                android:id="@+id/mwaghavul_english"
+                android:orderInCategory="100"
+                app:showAsAction="never"/>
+            <item android:title="English - English"
+                android:id="@+id/english_english"
+                android:orderInCategory="100"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+</menu>
