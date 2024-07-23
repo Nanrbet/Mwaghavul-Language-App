@@ -8,15 +8,15 @@
         android:title=""
         app:showAsAction="always">
         <menu>
-            <item android:title="English - Mwaghavul"
+            <item android:title="@string/english_mwaghavul"
                 android:id="@+id/english_mwaghavul"
                 android:orderInCategory="100"
                 app:showAsAction="never"/>
-            <item android:title="Mwaghavul - English"
+            <item android:title="@string/mwaghavul_english"
                 android:id="@+id/mwaghavul_english"
                 android:orderInCategory="100"
                 app:showAsAction="never"/>
-            <item android:title="English - English"
+            <item android:title="@string/english_english"
                 android:id="@+id/english_english"
                 android:orderInCategory="100"
                 app:showAsAction="never"/>
