@@ -5,28 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ListView
+import android.widget.Toast
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [BookmarkFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BookmarkFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -36,4 +22,40 @@ class BookmarkFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bookmark, container, false)
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val bookmarkList : ListView = view.findViewById(R.id.bookmark_list)
+        // Implement the listener inline
+        val bookmarkAdapter = BookmarkAdapter(requireActivity(), getListOfWords().toMutableList(), object : BookmarkAdapter.OnItemClickListener {
+            override fun onItemClick(item: String) {
+                Toast.makeText(requireActivity(), "Clicked: $item", Toast.LENGTH_SHORT).show()
+
+                // Navigate to DetailFragment when an item is clicked
+                val fragment = DetailFragment()
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.replace(R.id.main_fragment_container, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+        },
+            object : BookmarkAdapter.OnItemClickListener {
+                override fun onItemClick(item: String) {
+                    Toast.makeText(requireActivity(), "Deleted: $item", Toast.LENGTH_SHORT).show()
+                    // The item removal is already handled in the adapter's btnDelete click listener
+                }
+            })
+
+        bookmarkList.adapter = bookmarkAdapter
+    }
+
+    private fun getListOfWords() : Array<String>{
+        val source = arrayOf(
+            "a","apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew",
+            "kiwi", "lemon", "mango", "nectarine", "orange", "papaya", "quince", "raspberry",
+            "strawberry", "tangerine", "ugli", "vanilla", "watermelon", "xigua", "yam", "zucchini",
+            "apricot", "blueberry", "cantaloupe", "dragonfruit", "eggplant"
+        )
+        return source
+    }
+
 }
