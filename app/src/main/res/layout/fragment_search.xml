@@ -57,6 +57,7 @@
             android:padding="8dp">
 
             <ImageView
+                android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_search"
@@ -64,6 +65,7 @@
                 android:layout_gravity="center_vertical" />
 
             <EditText
+                android:id="@+id/edit_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -74,6 +76,7 @@
                 android:textColorHint="@android:color/darker_gray" />
 
             <ImageView
+                android:id="@+id/clear_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_close"

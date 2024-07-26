@@ -4,6 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailFragment">
+    <!-- Include the app_bar.xml -->
+    <include
+        layout="@layout/app_bar_main" />
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -12,5 +15,20 @@
         android:text="Details fragment"
         android:gravity="center"
         android:textSize="40sp"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="56dp">
+
+        <TextView
+            android:id="@+id/selected_word_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Selected word will appear here" />
+
+    </LinearLayout>
 
 </FrameLayout>

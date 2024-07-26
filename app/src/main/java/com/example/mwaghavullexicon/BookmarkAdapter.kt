@@ -36,7 +36,7 @@ class BookmarkAdapter(private val context: Context, private val source: MutableL
         // clicking the bookmarked words
         viewHolder.textView.text = source[position]
         viewHolder.textView.setOnClickListener {
-            listener?.onItemClick(source[position])
+            listener.onItemClick(source[position])
         }
         // deleting the words also
         viewHolder.btnDelete.setOnClickListener {
