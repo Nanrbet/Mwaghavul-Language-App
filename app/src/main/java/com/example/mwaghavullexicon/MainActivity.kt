@@ -75,6 +75,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         })
+
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
