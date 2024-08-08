@@ -6,11 +6,6 @@
     android:orientation="vertical"
     tools:context=".BookmarkFragment">
 
-    <!-- Add space for the app bar -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="56dp" />
-
     <ListView
         android:id="@+id/bookmark_list"
         android:layout_width="match_parent"

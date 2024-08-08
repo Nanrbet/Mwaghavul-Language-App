@@ -16,13 +16,6 @@
         app:elevation="0dp"
         android:translationZ="0.1dp">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:elevation="0dp"/>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -108,10 +101,10 @@
                 android:id="@+id/dictionary_search_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="@drawable/rounded_listview"
-                android:elevation="@dimen/cardview_default_elevation">
-            </ListView>
+                android:elevation="@dimen/cardview_default_elevation"
+                android:scrollbars="none"
+                android:orientation="vertical"/>
 
         </LinearLayout>
     </FrameLayout>
