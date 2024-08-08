@@ -3,6 +3,8 @@ package com.example.mwaghavullexicon
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -24,6 +26,8 @@ class BookmarkFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+
         val bookmarkList : ListView = view.findViewById(R.id.bookmark_list)
         // Implement the listener inline
         val bookmarkAdapter = BookmarkAdapter(requireActivity(), getListOfWords().toMutableList(), object : BookmarkAdapter.OnItemClickListener {
@@ -46,6 +50,10 @@ class BookmarkFragment : Fragment() {
             })
 
         bookmarkList.adapter = bookmarkAdapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_clear, menu)
     }
 
     private fun getListOfWords() : Array<String>{
