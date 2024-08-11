@@ -11,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
@@ -19,11 +20,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 
-class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
+class SearchFragment(private var dbHelper: DBHelper) : Fragment() {
 
     private lateinit var listView: ListView
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var editText : EditText
+    private var offset = 0
+    private val limit = 10
+    private var isLoading = false
 
     private var source : List<Word> = emptyList()
 
@@ -37,8 +41,19 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
         ): View {
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        listView = view.findViewById(R.id.dictionary_search_list)
+        dbHelper = DBHelper(requireContext(), null)
+        // Shared preference to recall the last translations
+        // Initial load
+        val id = Global.getState(requireContext() as MainActivity, "dict_type")
+        offset = 0
+        // sets the itemId to eng_mwa id if not saved preference
+        val itemId = id?.let { resources.getIdentifier(it, "id", requireContext().packageName) } ?: R.id.english_mwaghavul
+        resetDataSource(dbHelper.getAllWords(itemId, limit, offset))
+        listView.adapter = adapter
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,25 +81,22 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         Global.saveState(requireActivity() as MainActivity, "dic_type", id.toString())
-        source = dbHelper.getAllWords(id)
-        val currentFragment = parentFragmentManager.findFragmentById(R.id.main_fragment_container) as? SearchFragment
+        offset = 0 // Reset offset to 0 for new selection
+        source = dbHelper.getAllWords(id, limit, offset) // Fetch the initial set of words with pagination
 
         return when (item.itemId) {
             R.id.mwaghavul_english -> {
-                dataSourceCallback?.onDataSourceReady(source)
-                currentFragment?.resetDataSource(source)
+                resetDataSource(source)
                 Toast.makeText(requireContext(), "Mwaghavul - English clicked", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.english_mwaghavul -> {
-                dataSourceCallback?.onDataSourceReady(source)
-                currentFragment?.resetDataSource(source)
+                resetDataSource(source)
                 Toast.makeText(requireContext(), "English - Mwaghavul clicked", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.english_english -> {
-                dataSourceCallback?.onDataSourceReady(source)
-                currentFragment?.resetDataSource(source)
+                resetDataSource(source)
                 Toast.makeText(requireContext(), "English - English clicked", Toast.LENGTH_LONG).show()
                 true
             }
@@ -92,6 +104,14 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val id = Global.getState(requireActivity() as MainActivity, "dic_type")?.toInt()
+        val itemId = id?.let { resources.getIdentifier(it.toString(), "id", requireActivity().packageName) } ?: R.id.english_mwaghavul
+        // Reset the data source in the SearchFragment
+        resetDataSource(dbHelper.getAllWords(itemId, limit, 0))
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -110,12 +130,6 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
 
         listView = view.findViewById<ListView>(R.id.dictionary_search_list)
         editText = view.findViewById<EditText>(R.id.edit_search)
-        // Create a list of word.term values
-        val termList = source.map { it.term }
-        // Create an ArrayAdapter with the termList
-        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, termList)
-//        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, source)
-        listView.adapter = adapter
 
         // Set the TextWatcher for the EditText
         editText.addTextChangedListener(object : TextWatcher {
@@ -146,23 +160,38 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
                 commit()
             }
         }
-        // Call the callback to get the data source
-        dataSourceCallback?.onDataSourceReady(source)
-        // Shared preference to recall the last translations
-        val id = Global.getState(requireContext() as MainActivity, "dict_type")
-        if (id != null) {
-            val itemId = resources.getIdentifier(id, "id", requireContext().packageName)
-            dataSourceCallback?.onDataSourceReady(dbHelper.getAllWords(itemId))
-            resetDataSource(dbHelper.getAllWords(itemId))
-        } else {
-            dataSourceCallback?.onDataSourceReady(dbHelper.getAllWords(R.id.english_mwaghavul))
-            resetDataSource(dbHelper.getAllWords(R.id.english_mwaghavul))
-        }
+
+        listView.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {}
+
+            override fun onScroll(
+                view: AbsListView?,
+                firstVisibleItem: Int,
+                visibleItemCount: Int,
+                totalItemCount: Int
+            ) {
+                if (!isLoading) {
+                    // Load more when reaching the bottom
+                    if (firstVisibleItem + visibleItemCount >= totalItemCount && totalItemCount > 0) {
+                        isLoading = true
+                        offset += limit
+                        loadMoreWords()
+                    }
+
+                    // Load more when reaching the top and offset is greater than zero
+                    if (firstVisibleItem == 0 && offset >= limit) {
+                        isLoading = true
+                        offset -= limit
+                        loadMoreWords(prepend = true)
+                    }
+                }
+            }
+        })
+
 
         // To clear write up in search box
         val editText = view.findViewById<EditText>(R.id.edit_search)
         val clearButton = view.findViewById<ImageView>(R.id.clear_button)
-
         clearButton.setOnClickListener {
             editText.text.clear() // Clear the text in the EditText when the clear button is clicked
         }
@@ -170,7 +199,6 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
         // To search or return no result
         val listView = view.findViewById<ListView>(R.id.dictionary_search_list)
         val searchButton = view.findViewById<ImageView>(R.id.search_button) // Assuming the search button is the "x" button
-
         searchButton.setOnClickListener {
             val searchText = editText.text.toString().trim() // Get the search text from the EditText and trim any leading or trailing spaces
             val adapter = listView.adapter as ArrayAdapter<String> // Assuming you are using an ArrayAdapter<String> for the ListView
@@ -207,19 +235,28 @@ class SearchFragment(private val dbHelper: DBHelper) : Fragment() {
         this.dataSourceCallback = callback
     }
 
-    public fun resetDataSource(data: List<Word>) {
-        source = data
+    private fun resetDataSource(data: List<Word>, append: Boolean = false) {
+        if (append) {
+            source = source + data // Append the new data to the existing list
+        } else {
+            source = data
+        }
+
         val termList = source.map { it.term }
 
-        if (adapter == null || adapter.isEmpty) {
-            // Create a new adapter if it doesn't exist or is empty
+        // Create a new adapter if it doesn't exist
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, termList)
             listView.adapter = adapter
-        } else {
-            // Clear the existing adapter and update the term list
-            adapter.clear()
-            adapter.addAll(termList)
-            adapter.notifyDataSetChanged()
+            Toast.makeText(requireContext(), "init adapter change", Toast.LENGTH_LONG).show()
+
+        isLoading = false
+    }
+
+    private fun loadMoreWords(prepend: Boolean = false) {
+        val id = Global.getState(requireContext() as MainActivity, "dict_type")?.toIntOrNull()
+        val newWords = dbHelper.getAllWords(id ?: R.id.english_mwaghavul, limit, offset)
+        if (newWords.isNotEmpty()) {
+            resetDataSource(newWords, append = !prepend)
         }
     }
 

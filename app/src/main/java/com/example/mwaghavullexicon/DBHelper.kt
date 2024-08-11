@@ -10,7 +10,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFactory?) :
+    SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION){
     companion object {
         private const val DATABASE_NAME = "mwaghavul_dic.db"
         private const val DATABASE_VERSION = 1
@@ -37,18 +38,28 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
     }
     private val DATABASE_LOCATION = "data/data/${context.packageName}/databases/"
     private val DATABASE_FULL_PATH = "$DATABASE_LOCATION$DATABASE_NAME"
-    lateinit var db : SQLiteDatabase
+    private var db : SQLiteDatabase
 
     init {
         if (!databaseExists()) {
+            Log.d("DBHelper", "Database does not exist. Creating database.")
             try {
-                val dbLocation:File = File(DATABASE_LOCATION)
+                val dbLocation: File = File(DATABASE_LOCATION)
                 dbLocation.mkdirs()
-                extractAssetToDatabaseDirectory(DATABASE_NAME)
-            }catch (e: IOException){
+            } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
+
+        if (!databaseContainsWords()) {
+            Log.d("DBHelper", "Database does not contain words. Copying data from assets.")
+            try {
+                extractAssetToDatabaseDirectory(DATABASE_NAME)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
         db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FULL_PATH, null)
     }
 
@@ -88,59 +99,78 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         onCreate(db)
     }
 
-    fun getAllWords(dicType: Int): List<Word> {
+    fun getAllWords(dicType: Int, limit: Int, offset: Int): List<Word> {
         val words = mutableListOf<Word>()
+        db = this.readableDatabase
+
         val tableName = try {
             getTableName(dicType)
         } catch (e: IllegalArgumentException) {
             Log.e("DBHelper", "Invalid dictionary type: $dicType")
             return words
         }
-
-        val cursor = db.rawQuery("SELECT * FROM $tableName ", null)
-        if (cursor.moveToFirst()) {
-            do {
-                when (dicType) {
-                    R.id.mwaghavul_english -> {
-                        val word = Word(
-                            term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
-                            pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                            pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                            pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
-                            translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
-                            examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                        )
-                        words.add(word)
-                    } R.id.english_mwaghavul -> {
-                    val word = Word(
-                        translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
-                        pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                        pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                        pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
-                        term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
-                        examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                    )
-                    words.add(word)
-                    } R.id.english_english -> {
-                        val word = Word(
-                            term =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WORD)),
-                            pos =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                            definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
-                            examples =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                        )
-                        words.add(word)
-                    }
-                }
-            } while (cursor.moveToNext())
+        if (tableName.isEmpty()) {
+            Log.e("DBHelper", "Table name is empty for dictionary type: $dicType")
+            return words
         }
-        cursor.close()
-        db.close()
+
+        // Pagination Logic
+        val cursor = db.rawQuery("SELECT * FROM $tableName LIMIT $limit OFFSET $offset;", null)
+        Log.d("DBHelper", "Query executed: SELECT * FROM $tableName LIMIT $limit OFFSET $offset;")
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    when (dicType) {
+                        R.id.mwaghavul_english -> {
+                            val word = Word(
+                                term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
+                                pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
+                                pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                                pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
+                                translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
+                                examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                            )
+                            Log.d("DBHelper", "Fetched word: $word")
+                            words.add(word)
+                        }
+                        R.id.english_mwaghavul -> {
+                            val word = Word(
+                                translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
+                                pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
+                                pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                                pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
+                                term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
+                                examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                            )
+                            Log.d("DBHelper", "Fetched word: $word")
+                            words.add(word)
+                        }
+                        R.id.english_english -> {
+                            val word = Word(
+                                term =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WORD)),
+                                pos =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                                definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
+                                examples =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                            )
+                            Log.d("DBHelper", "Fetched word: $word")
+                            words.add(word)
+                        }
+                    }
+                } while (cursor.moveToNext())
+            } else {
+                Log.d("DBHelper", "No words found in table: $tableName")
+            }
+        } finally {
+            cursor.close() // Always close the cursor
+            db.close()     // Close the database
+        }
         return words
     }
 
+
     fun searchWord(dicType: Int, query: String): Word? {
         var word : Word? = null
-        val db = this.readableDatabase
+        db = this.readableDatabase
         val tableName = getTableName(dicType)
         val columnName = getColumnName(dicType)
 
@@ -182,7 +212,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         return word
     }
 
-    fun getTableName(dicType: Int): String {
+    private fun getTableName(dicType: Int): String {
         var tableName = ""
         if (dicType == R.id.mwaghavul_english){
             tableName = MWA_ENG_TABLE
@@ -204,7 +234,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
     }
 
     fun addBookmark(word: Word, tableName: String) {
-        val db = this.writableDatabase
+        db = this.writableDatabase
         val contentValues = ContentValues()
 
         contentValues.put(COLUMN_TERM, word.term)
@@ -228,7 +258,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
     }
 
     fun removeBookmark(word: Word, tableName: String) {
-        val db = this.writableDatabase
+        db = this.writableDatabase
         try {
             db.delete(BOOKMARK_TABLE, "$COLUMN_TERM = ?", arrayOf(word.term))
         }catch (e: Exception) {
@@ -309,12 +339,36 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         return word
     }
 
-    fun databaseExists(): Boolean {
+    private fun databaseExists(): Boolean {
         val dbFile = File(DATABASE_FULL_PATH)
         return dbFile.exists()
     }
 
-    fun extractAssetToDatabaseDirectory(fileName: String) {
+    private fun databaseContainsWords(): Boolean {
+        var totalRowCount = 0
+
+        val db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FULL_PATH, null)
+        val cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name != 'android_metadata'", null)
+
+        while (cursor.moveToNext()) {
+            val tableName = cursor.getString(0)
+            val countCursor = db.rawQuery("SELECT COUNT(*) FROM $tableName", null)
+
+            if (countCursor.moveToFirst()) {
+                val rowCount = countCursor.getInt(0)
+                totalRowCount += rowCount
+            }
+
+            countCursor.close()
+        }
+
+        cursor.close()
+        db.close()
+
+        return totalRowCount > 0
+    }
+
+    private fun extractAssetToDatabaseDirectory(fileName: String) {
         val inputStream = context.assets.open(fileName)
         val outputFile = File(DATABASE_FULL_PATH)
         val outputStream = FileOutputStream(outputFile)
