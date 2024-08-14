@@ -1,5 +1,10 @@
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Word(
-    val term: String,
+    val id: String = "",
+    val term: String= "",
     val pl: String = "",
     val pos: String = "",
     val pronunciation: String = "",
@@ -9,4 +14,4 @@ data class Word(
     val audio: String = "",
     val language: String = "",
     val note: String = ""
-)
+) : Parcelable

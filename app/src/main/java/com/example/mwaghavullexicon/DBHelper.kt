@@ -3,6 +3,7 @@ package com.example.mwaghavullexicon
 import Word
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
@@ -39,12 +40,13 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     private val DATABASE_LOCATION = "data/data/${context.packageName}/databases/"
     private val DATABASE_FULL_PATH = "$DATABASE_LOCATION$DATABASE_NAME"
     private var db : SQLiteDatabase
+    private var dicType: Int = Global.getState(MainActivity(), "dict_type")?.toIntOrNull() ?: R.id.english_mwaghavul
 
     init {
         if (!databaseExists()) {
             Log.d("DBHelper", "Database does not exist. Creating database.")
             try {
-                val dbLocation: File = File(DATABASE_LOCATION)
+                val dbLocation = File(DATABASE_LOCATION)
                 dbLocation.mkdirs()
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -59,7 +61,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                 e.printStackTrace()
             }
         }
-
         db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FULL_PATH, null)
     }
 
@@ -99,12 +100,12 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         onCreate(db)
     }
 
-    fun getAllWords(dicType: Int, limit: Int, offset: Int): List<Word> {
+    fun getInitialWords(limit: Int, offset: Int): List<Word> {
         val words = mutableListOf<Word>()
         db = this.readableDatabase
 
         val tableName = try {
-            getTableName(dicType)
+            getTableName()
         } catch (e: IllegalArgumentException) {
             Log.e("DBHelper", "Invalid dictionary type: $dicType")
             return words
@@ -120,42 +121,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    when (dicType) {
-                        R.id.mwaghavul_english -> {
-                            val word = Word(
-                                term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
-                                pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                                pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                                pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
-                                translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
-                                examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                            )
-                            Log.d("DBHelper", "Fetched word: $word")
-                            words.add(word)
-                        }
-                        R.id.english_mwaghavul -> {
-                            val word = Word(
-                                translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
-                                pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                                pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                                pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
-                                term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
-                                examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                            )
-                            Log.d("DBHelper", "Fetched word: $word")
-                            words.add(word)
-                        }
-                        R.id.english_english -> {
-                            val word = Word(
-                                term =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WORD)),
-                                pos =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                                definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
-                                examples =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                            )
-                            Log.d("DBHelper", "Fetched word: $word")
-                            words.add(word)
-                        }
-                    }
+                    words.add(extractWordFromCursor(cursor))
                 } while (cursor.moveToNext())
             } else {
                 Log.d("DBHelper", "No words found in table: $tableName")
@@ -167,44 +133,105 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return words
     }
 
+    private fun extractWordFromCursor(cursor: Cursor): Word {
+        val dicType = Global.getState(MainActivity(), "dict_type")?.toIntOrNull()
+        return when (dicType) {
+            R.id.mwaghavul_english -> {
+                val word = Word(
+                    id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
+                    pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
+                    pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                    pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
+                    translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
+                    examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                )
+                Log.d("DBHelper", "Fetched word: $word")
+                return word
+            }
+            R.id.english_mwaghavul -> {
+                val word = Word(
+                    id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
+                    pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
+                    pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                    pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
+                    term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
+                    examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                )
+                Log.d("DBHelper", "Fetched word: $word")
+                return word
+            }
+            R.id.english_english -> {
+                val word = Word(
+                    id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    term =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WORD)),
+                    pos =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                    definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
+                    examples =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                )
+                Log.d("DBHelper", "Fetched word: $word")
+                return word
+            }
+            else -> Word(
+                id = "no id",
+                term = "no term",
+                pl = "no pl",
+                pos = "no pos",
+                pronunciation = "no pronunciation",
+                definition = "no definition",
+                examples = "no examples",
+                translation = "no translation",
+                audio = "no audio",
+                language = "no language",
+                note = "no note"
+            )
+        }
+    }
 
-    fun searchWord(dicType: Int, query: String): Word? {
-        var word : Word? = null
+    fun getMoreWords(limit: Int, offset: Int): List<Word> {
+        val words = mutableListOf<Word>()
         db = this.readableDatabase
-        val tableName = getTableName(dicType)
-        val columnName = getColumnName(dicType)
+
+        val tableName = try {
+            getTableName()
+        } catch (e: IllegalArgumentException) {
+            Log.e("DBHelper", "Invalid dictionary type: $dicType")
+            return words
+        }
+        if (tableName.isEmpty()) {
+            Log.e("DBHelper", "Table name is empty for dictionary type: $dicType")
+            return words
+        }
+
+        // Pagination Logic
+        val cursor = db.rawQuery("SELECT * FROM $tableName LIMIT $limit OFFSET $offset;", null)
+        Log.d("DBHelper", "Query executed: SELECT * FROM $tableName LIMIT $limit OFFSET $offset;")
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    words.add(extractWordFromCursor(cursor))
+                } while (cursor.moveToNext())
+            } else {
+                Log.d("DBHelper", "No words found in table: $tableName")
+            }
+        } finally {
+            cursor.close() // Always close the cursor
+            db.close()     // Close the database
+        }
+        return words
+    }
+
+    fun searchWord(query: String): Word? {
+        val word : Word? = null
+        db = this.readableDatabase
+        val tableName = getTableName()
+        val columnName = getColumnName()
 
         val cursor = db.rawQuery("SELECT * FROM $tableName WHERE upper([$columnName]) = upper('$query');", null)
         if (cursor.moveToFirst()) {
             do {
-                when (dicType) {
-                    R.id.mwaghavul_english -> {
-                        word = Word(
-                            term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
-                            pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                            pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                            pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
-                            translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
-                            examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                        )
-                    } R.id.english_mwaghavul -> {
-                        word = Word(
-                        translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
-                        pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                        pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                        pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
-                        term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
-                        examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                    )
-                    } R.id.english_english -> {
-                    word = Word(
-                        term =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WORD)),
-                        pos =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                        definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
-                        examples =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
-                    )
-                    }
-                }
+                extractWordFromCursor(cursor)
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -212,7 +239,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return word
     }
 
-    private fun getTableName(dicType: Int): String {
+    private fun getTableName(): String {
         var tableName = ""
         if (dicType == R.id.mwaghavul_english){
             tableName = MWA_ENG_TABLE
@@ -224,7 +251,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return tableName
     }
 
-    private fun getColumnName(dicType: Int): String {
+    private fun getColumnName(): String {
         return when (dicType) {
             R.id.mwaghavul_english -> COLUMN_MWAGHAVUL
             R.id.english_mwaghavul -> COLUMN_GLOSS

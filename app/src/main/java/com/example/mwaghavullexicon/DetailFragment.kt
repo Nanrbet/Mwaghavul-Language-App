@@ -1,5 +1,6 @@
 package com.example.mwaghavullexicon
 
+import Word
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,11 +29,11 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Retrieve the word from the arguments and display it
-        val selectedWord = arguments?.getString("selected_word")
+        val selectedWord: Word? = arguments?.getParcelable("selected_word")
 
         // Find the TextView and set the text
         val textView: TextView = view.findViewById(R.id.term_text)
-        textView.text = selectedWord
+        textView.text = selectedWord?.term ?: "No term found"
         val posLabelTextView: TextView = view.findViewById(R.id.pos_label)
         val posTextView: TextView = view.findViewById(R.id.pos_text)
 
