@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -37,25 +38,8 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
         ): View {
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
-        listView = view.findViewById(R.id.dictionary_search_list)
-        dbHelper = DBHelper(requireContext(), null)
-        // Shared preference to recall the last translations
-        // Initial load
-        // Initialize the ViewModel
-        viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(DBHelper())).get(WordLoader::class.java)
-        // Observe the words LiveData
-        viewModel.words.observe(viewLifecycleOwner) { newWords ->
-            adapter.clear() // Clear previous data if needed
-            adapter.addAll(newWords)
-            adapter.notifyDataSetChanged()
-        }
-
-        // Load initial words, sets the itemId to eng_mwa id if not saved preference
-        viewModel.loadInitialWords()
-        listView.adapter = adapter
-        // Inflate the layout for this fragment
-        return view
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,69 +48,30 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         setHasOptionsMenu(true)
     }
 
-    // Inflate the menu
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_options, menu)
-        //tODO: make menuSetting =menu.findItem(R.id.action_setting)
-        // so that translation can change icon when selected
-        val id = Global.getState(requireContext() as MainActivity, "dic_type")?.toIntOrNull()
-        if (id != null) {
-            val menuItem = menu.findItem(id)
-            if (menuItem != null) {
-                onOptionsItemSelected(menuItem)
-            }
-        } else {
-            onOptionsItemSelected(menu.findItem(R.id.english_mwaghavul)!!)
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        Global.saveState(requireActivity() as MainActivity, "dic_type", id.toString())
-
-        return when (item.itemId) {
-            R.id.mwaghavul_english -> {
-                viewModel.loadInitialWords()
-                Toast.makeText(requireContext(), "Mwaghavul - English clicked", Toast.LENGTH_LONG).show()
-                true
-            }
-            R.id.english_mwaghavul -> {
-                viewModel.loadInitialWords()
-                Toast.makeText(requireContext(), "English - Mwaghavul clicked", Toast.LENGTH_LONG).show()
-                true
-            }
-            R.id.english_english -> {
-                viewModel.loadInitialWords()
-                Toast.makeText(requireContext(), "English - English clicked", Toast.LENGTH_LONG).show()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-//    override fun onResume() {
-//        super.onResume()
-//
-//        val id = Global.getState(requireActivity() as MainActivity, "dic_type")?.toInt()
-//        val itemId = id?.let { resources.getIdentifier(it.toString(), "id", requireActivity().packageName) } ?: R.id.english_mwaghavul
-//        // Reset the data source in the SearchFragment
-          // viewModel.loadInitialWords()
-//        resetDataSource(dbHelper.getAllWords(itemId, limit, 0))
-//    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        // Initialize the adapter
         listView = view.findViewById<ListView>(R.id.dictionary_search_list)
         editText = view.findViewById<EditText>(R.id.edit_search)
-        adapter = WordAdapter(requireContext(), mutableListOf())
-        listView.adapter = adapter
+
+        // Initialize the ViewModel with the DBHelper instance
+        viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(dbHelper)).get(WordLoader::class.java)
+        // Observe the words LiveData and update adapter when new data is loaded
+        viewModel.words.observe(viewLifecycleOwner) { newWords ->
+            Log.d("SearchFragment", "New words received: $newWords")
+            // Initialize the adapter with the loaded words
+            if (!::adapter.isInitialized) {
+                adapter = WordAdapter(requireContext(), newWords.toMutableList()) { word ->
+                    onWordClicked(word) // Handle the click event
+                }
+                listView.adapter = adapter
+            } else {
+                adapter.updateData(newWords)
+            }
+            isLoading = false // Reset loading state after data is updated
+        }
+        // Load initial words, sets the itemId to eng_mwa id if not saved preference
+        viewModel.loadInitialWords()
+
 
         // Set the TextWatcher for the EditText
         editText.addTextChangedListener(object : TextWatcher {
@@ -141,16 +86,7 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
             }
         })
 
-        // Set the item click listener
-        listView.setOnItemClickListener { parent, view, position, id ->
-            // Create an instance of DetailFragment
-            val fragment = DetailFragment()
-            val selectedWord = adapter.getItem(position)
-            // Pass the selectedWord to the next fragment
-            navigateToNextFragment(selectedWord, fragment::class.java, R.id.main_fragment_container)
-
-        }
-
+        // Set up infinite scrolling
         listView.setOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {}
 
@@ -164,12 +100,11 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
                     // Load more when reaching the bottom
                     if (firstVisibleItem + visibleItemCount >= totalItemCount) {
                         isLoading = true
-                        viewModel.loadMoreWords() // Load more words
+                        viewModel.loadMoreWords() // Load more words when the user scrolls down
                     }
                 }
             }
         })
-
 
         // To clear write up in search box
         val editText = view.findViewById<EditText>(R.id.edit_search)
@@ -201,6 +136,13 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
             Toast.makeText(requireContext(), "No Results", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun onWordClicked(word: Word) {
+        // Create an instance of DetailFragment
+        val fragment = DetailFragment()
+        // Pass the selectedWord to the next fragment
+        Toast.makeText(requireContext(), "Clicked: ${word.term}", Toast.LENGTH_SHORT).show()
+        navigateToNextFragment(word, fragment::class.java, R.id.main_fragment_container)
+    }
     private fun navigateToNextFragment(selectedWord: Word?, fragmentClass: Class<out Fragment>, containerId: Int) {
         selectedWord?.let {
             val bundle = Bundle().apply {
@@ -214,6 +156,66 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
                 .addToBackStack(null)
                 .commit()
         }
+    }
+
+    // Inflate the menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_options, menu)
+        //tODO: make menuSetting =menu.findItem(R.id.action_setting)
+        // so that translation can change icon when selected
+        val id = Global.getState(requireContext(), "dic_type")?.toIntOrNull()
+        if (id != null) {
+            val menuItem = menu.findItem(id)
+            if (menuItem != null) {
+                onOptionsItemSelected(menuItem)
+            }
+        } else {
+            onOptionsItemSelected(menu.findItem(R.id.english_mwaghavul)!!)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        return when (item.itemId) {
+            R.id.mwaghavul_english -> {
+                Global.saveState(requireActivity(), "dic_type", id.toString())
+                viewModel.loadInitialWords()
+                Toast.makeText(requireContext(), "Mwaghavul - English clicked", Toast.LENGTH_LONG).show()
+                true
+            }
+            R.id.english_mwaghavul -> {
+                Global.saveState(requireActivity(), "dic_type", id.toString())
+                viewModel.loadInitialWords()
+                Toast.makeText(requireContext(), "English - Mwaghavul clicked", Toast.LENGTH_LONG).show()
+                true
+            }
+            R.id.english_english -> {
+                Global.saveState(requireActivity(), "dic_type", id.toString())
+                viewModel.loadInitialWords()
+                Toast.makeText(requireContext(), "English - English clicked", Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//        val id = Global.getState(requireActivity(), "dic_type")?.toInt()
+//        val itemId = id?.let { resources.getIdentifier(it.toString(), "id", requireActivity().packageName) } ?: R.id.english_mwaghavul
+//        // Reset the data source in the SearchFragment
+          // viewModel.loadInitialWords()
+//        resetDataSource(dbHelper.getAllWords(itemId, limit, 0))
+//    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
     }
 
     public fun filterValue(value: String) {
