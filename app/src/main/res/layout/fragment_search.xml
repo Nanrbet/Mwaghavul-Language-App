@@ -100,9 +100,7 @@
             <ListView
                 android:id="@+id/dictionary_search_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_listview"
-                android:elevation="@dimen/cardview_default_elevation"
+                android:layout_height="match_parent"
                 android:scrollbars="none"
                 android:orientation="vertical"/>
 
