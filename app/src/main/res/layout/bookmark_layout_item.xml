@@ -9,11 +9,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="WOrd1 "
             android:textSize="18sp"
             android:layout_gravity="center"/>
         <ImageView
-            android:id="@+id/bookmark_icon"
+            android:id="@+id/btn_delete_bookmark"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_delete_24"/>

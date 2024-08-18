@@ -251,7 +251,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         contentValues.put(COLUMN_TRANSLATION, word.translation)
         contentValues.put(COLUMN_AUDIO, word.audio)
         contentValues.put(COLUMN_LANGUAGE, word.language)
-        contentValues.put(COLUMN_NOTE, word.note)
+        contentValues.put(COLUMN_NOTE, System.currentTimeMillis().toString())
 
         try {
             db.insert(BOOKMARK_TABLE, null, contentValues)
@@ -265,7 +265,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     fun removeBookmark(word: Word) {
         db = this.writableDatabase
         try {
-            db.delete(BOOKMARK_TABLE, "$COLUMN_TERM = ?", arrayOf(word.term))
+            db.delete(BOOKMARK_TABLE, "$COLUMN_ID = ? AND $COLUMN_TERM = ?", arrayOf(word.id, word.term))
         }catch (e: Exception) {
             // Handle the exception
             Log.e("Error", "Error deleting word from bookmark: ${e.message}")
@@ -299,7 +299,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         val words = mutableListOf<Word>()
         val db = this.readableDatabase
 
-        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE ORDER BY [date] DESC;", null)
+        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE ORDER BY $COLUMN_NOTE DESC;", null)
         if (cursor.moveToFirst()) {
             do {
                 val word = Word(
@@ -307,7 +307,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                     term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TERM)),
                     pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
                     pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                    pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRONUNCIATION)),
+                    pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
                     definition = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
                     examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES)),
                     translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TRANSLATION)),

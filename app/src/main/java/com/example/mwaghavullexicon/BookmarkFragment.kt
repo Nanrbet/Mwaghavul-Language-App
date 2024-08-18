@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 
-class BookmarkFragment : Fragment() {
+class BookmarkFragment (private var dbHelper: DBHelper): Fragment()  {
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,41 +30,29 @@ class BookmarkFragment : Fragment() {
 
         val bookmarkList : ListView = view.findViewById(R.id.bookmark_list)
         // Implement the listener inline
-        val bookmarkAdapter = BookmarkAdapter(requireActivity(), getListOfWords().toMutableList(), object : BookmarkAdapter.OnItemClickListener {
-            override fun onItemClick(item: String) {
-                Toast.makeText(requireActivity(), "Clicked: $item", Toast.LENGTH_SHORT).show()
+        val bookmarkAdapter = BookmarkAdapter(requireActivity(), dbHelper.getAllWordsFromBookmark().toMutableList(),
+            listener = { word ->
+                Toast.makeText(requireActivity(), "Clicked: ${word.term}", Toast.LENGTH_SHORT).show()
 
                 // Navigate to DetailFragment when an item is clicked
                 val fragment = DetailFragment()
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.main_fragment_container, fragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
-            }
-        },
-            object : BookmarkAdapter.OnItemClickListener {
-                override fun onItemClick(item: String) {
-                    Toast.makeText(requireActivity(), "Deleted: $item", Toast.LENGTH_SHORT).show()
-                    // The item removal is already handled in the adapter's btnDelete click listener
+                word.let {
+                    val bundle = Bundle().apply {
+                        putParcelable("selected_word", it) // Ensure Word implements Parcelable
+                    }
+                    val nextFragment = fragment::class.java.newInstance().apply {
+                        arguments = bundle
+                    }
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main_fragment_container, nextFragment)
+                        .addToBackStack(null)
+                        .commit()
                 }
-            })
+            },
+            dbHelper = dbHelper
+
+        )
 
         bookmarkList.adapter = bookmarkAdapter
     }
-
-    @Deprecated("Deprecated in Java", ReplaceWith("inflater.inflate(R.menu.menu_clear, menu)"))
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_clear, menu)
-    }
-
-    private fun getListOfWords() : Array<String>{
-        val source = arrayOf(
-            "a","apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew",
-            "kiwi", "lemon", "mango", "nectarine", "orange", "papaya", "quince", "raspberry",
-            "strawberry", "tangerine", "ugli", "vanilla", "watermelon", "xigua", "yam", "zucchini",
-            "apricot", "blueberry", "cantaloupe", "dragonfruit", "eggplant"
-        )
-        return source
-    }
-
 }

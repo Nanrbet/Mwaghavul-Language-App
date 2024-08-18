@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     openFragment(SearchFragment(dbHelper), "search", true)
                 }
                 R.id.nav_bookmark -> {
-                    openFragment(BookmarkFragment(), "bookmark", true)
+                    openFragment(BookmarkFragment(dbHelper), "bookmark", true)
                     // Change the icon to filled star
                     item.setIcon(R.drawable.filled_star_24)
                 }
