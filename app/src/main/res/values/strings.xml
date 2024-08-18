@@ -19,4 +19,8 @@
     <string name="mwaghavul_english">Mwaghavul - English</string>
     <string name="english_english">English - English</string>
     <string name="rate_us">Rate us</string>
+    <string name="translation">Translation:</string>
+    <string name="examples">Examples:</string>
+    <string name="definition">Definition:</string>
+    <string name="ipa">IPA:</string>
 </resources>
