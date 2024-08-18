@@ -40,7 +40,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     private val DATABASE_LOCATION = "data/data/${context.packageName}/databases/"
     private val DATABASE_FULL_PATH = "$DATABASE_LOCATION$DATABASE_NAME"
     private var db : SQLiteDatabase
-    private var dicType: Int = Global.getState(context, "dict_type")?.toIntOrNull() ?: R.id.english_mwaghavul
 
     init {
         if (!databaseExists()) {
@@ -103,9 +102,9 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     fun getWords(limit: Int, offset: Int): MutableList<Word> {
         val words = mutableListOf<Word>()
         db = this.readableDatabase
-
+        val dicType = getDicType()
         val tableName = try {
-            getTableName()
+            getTableName(dicType)
         } catch (e: IllegalArgumentException) {
             Log.e("DBHelper", "Invalid dictionary type: ")
             return words
@@ -117,7 +116,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    words.add(extractWordFromCursor(cursor))
+                    words.add(extractWordFromCursor(dicType, cursor))
                 } while (cursor.moveToNext())
             } else {
                 Log.d("DBHelper", "No words found in table: $tableName")
@@ -129,7 +128,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return words
     }
 
-    private fun extractWordFromCursor(cursor: Cursor): Word {
+    private fun extractWordFromCursor(dicType: Int, cursor: Cursor): Word {
         return when (dicType) {
             R.id.mwaghavul_english -> {
                 val word = Word(
@@ -188,13 +187,14 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     fun searchWord(query: String): Word? {
         val word : Word? = null
         db = this.readableDatabase
-        val tableName = getTableName()
+        val dicType = getDicType()
+        val tableName = getTableName(dicType)
         val columnName = getColumnName()
 
         val cursor = db.rawQuery("SELECT * FROM $tableName WHERE upper([$columnName]) = upper('$query');", null)
         if (cursor.moveToFirst()) {
             do {
-                extractWordFromCursor(cursor)
+                extractWordFromCursor(dicType, cursor)
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -202,9 +202,8 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return word
     }
 
-    private fun getTableName(): String {
+    private fun getTableName(dicType: Int): String {
         var tableName = ""
-        dicType = Global.getState(context, "dict_type")?.toIntOrNull() ?: R.id.english_mwaghavul
         if (dicType == R.id.mwaghavul_english){
             tableName = MWA_ENG_TABLE
         }else if (dicType == R.id.english_mwaghavul){
@@ -216,7 +215,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     }
 
     private fun getColumnName(): String {
-        return when (dicType) {
+        return when (getDicType()) {
             R.id.mwaghavul_english -> COLUMN_MWAGHAVUL
             R.id.english_mwaghavul -> COLUMN_GLOSS
             R.id.english_english -> COLUMN_WORD
@@ -373,5 +372,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         outputStream.close()
         inputStream.close()
     }
-
+    private fun getDicType(): Int {
+        return Global.getState(context, "dic_type")?.toIntOrNull() ?: R.id.english_mwaghavul
+    }
 }

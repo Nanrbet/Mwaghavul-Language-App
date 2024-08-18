@@ -6,8 +6,7 @@
     android:background="@drawable/rounded_listview"
     android:orientation="vertical"
     android:elevation="@dimen/cardview_default_elevation"
-    android:padding="16dp"
-    android:layout_margin="18dp">
+    android:padding="16dp">
 
     <TextView
     android:id="@+id/wordTerm_TextView"

@@ -32,6 +32,7 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
     private lateinit var adapter: WordAdapter
     private lateinit var editText : EditText
     private lateinit var viewModel: WordLoader
+    private val adapterWordList: MutableList<Word> = mutableListOf()
     private var isLoading = false
 
     override fun onCreateView(
@@ -52,25 +53,24 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         // Initialize the adapter
         listView = view.findViewById<ListView>(R.id.dictionary_search_list)
         editText = view.findViewById<EditText>(R.id.edit_search)
-
+        // Observe the words LiveData and update adapter when new data is loaded
+        adapter = WordAdapter(requireContext(), adapterWordList) { word ->
+            onWordClicked(word) // Handle the click event
+        }
+        listView.adapter = adapter
         // Initialize the ViewModel with the DBHelper instance
         viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(dbHelper)).get(WordLoader::class.java)
-        // Observe the words LiveData and update adapter when new data is loaded
         viewModel.words.observe(viewLifecycleOwner) { newWords ->
             Log.d("SearchFragment", "New words received: $newWords")
             // Initialize the adapter with the loaded words
-            if (!::adapter.isInitialized) {
-                adapter = WordAdapter(requireContext(), newWords.toMutableList()) { word ->
-                    onWordClicked(word) // Handle the click event
-                }
-                listView.adapter = adapter
-            } else {
-                adapter.updateData(newWords)
+
+            // Only update data if new words are received and not loading
+            if (newWords.isNotEmpty() && !isLoading) {
+                adapterWordList.addAll(newWords)
+                adapter.updateData(adapterWordList)
             }
             isLoading = false // Reset loading state after data is updated
         }
-        // Load initial words, sets the itemId to eng_mwa id if not saved preference
-        viewModel.loadInitialWords()
 
 
         // Set the TextWatcher for the EditText
@@ -87,24 +87,7 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         })
 
         // Set up infinite scrolling
-        listView.setOnScrollListener(object : AbsListView.OnScrollListener {
-            override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {}
-
-            override fun onScroll(
-                view: AbsListView?,
-                firstVisibleItem: Int,
-                visibleItemCount: Int,
-                totalItemCount: Int
-            ) {
-                if (!isLoading && totalItemCount > 0) {
-                    // Load more when reaching the bottom
-                    if (firstVisibleItem + visibleItemCount >= totalItemCount) {
-                        isLoading = true
-                        viewModel.loadMoreWords() // Load more words when the user scrolls down
-                    }
-                }
-            }
-        })
+        setupInfiniteScrollListener()
 
         // To clear write up in search box
         val editText = view.findViewById<EditText>(R.id.edit_search)
@@ -114,7 +97,6 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         }
 
         // To search or return no result
-        val listView = view.findViewById<ListView>(R.id.dictionary_search_list)
         val searchButton = view.findViewById<ImageView>(R.id.search_button) // Assuming the search button is the "x" button
         searchButton.setOnClickListener {//TODO: use dbHelper to search words and also update
             val searchText = editText.text.toString().trim() // Get the search text from the EditText and trim any leading or trailing spaces
@@ -135,6 +117,28 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
             // If no match found or the adapter is empty, show "No Results"
             Toast.makeText(requireContext(), "No Results", Toast.LENGTH_SHORT).show()
         }
+    }
+    private fun setupInfiniteScrollListener() {
+        listView.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {}
+
+            override fun onScroll(
+                view: AbsListView?,
+                firstVisibleItem: Int,
+                visibleItemCount: Int,
+                totalItemCount: Int
+            ) {
+                if (!isLoading) {
+                    // Calculate the last visible item indexo
+                    val lastVisibleItem = firstVisibleItem + visibleItemCount
+                    // Load more when reaching the bottom
+                    if (lastVisibleItem >= totalItemCount - 10) {
+                        isLoading = true
+                        viewModel.loadMoreWords() // Load more words when the user scrolls down
+                    }
+                }
+            }
+        })
     }
     private fun onWordClicked(word: Word) {
         // Create an instance of DetailFragment
@@ -159,6 +163,7 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
     }
 
     // Inflate the menu
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_options, menu)
         //tODO: make menuSetting =menu.findItem(R.id.action_setting)
@@ -174,24 +179,28 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
         return when (item.itemId) {
             R.id.mwaghavul_english -> {
                 Global.saveState(requireActivity(), "dic_type", id.toString())
+                adapterWordList.clear()
                 viewModel.loadInitialWords()
                 Toast.makeText(requireContext(), "Mwaghavul - English clicked", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.english_mwaghavul -> {
                 Global.saveState(requireActivity(), "dic_type", id.toString())
+                adapterWordList.clear()
                 viewModel.loadInitialWords()
                 Toast.makeText(requireContext(), "English - Mwaghavul clicked", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.english_english -> {
                 Global.saveState(requireActivity(), "dic_type", id.toString())
+                adapterWordList.clear()
                 viewModel.loadInitialWords()
                 Toast.makeText(requireContext(), "English - English clicked", Toast.LENGTH_LONG).show()
                 true
@@ -200,16 +209,33 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//
-//        val id = Global.getState(requireActivity(), "dic_type")?.toInt()
-//        val itemId = id?.let { resources.getIdentifier(it.toString(), "id", requireActivity().packageName) } ?: R.id.english_mwaghavul
-//        // Reset the data source in the SearchFragment
-          // viewModel.loadInitialWords()
-//        resetDataSource(dbHelper.getAllWords(itemId, limit, 0))
-//    }
+    override fun onPause() {
+        super.onPause()
+        // Reset the isLoading flag and clear the adapter
+        isLoading = false
+        // Detach the scroll listener when the fragment is paused
+        listView.setOnScrollListener(null)
+    }
+    override fun onResume() {
+        super.onResume()
+        // Reattach the scroll listener when the fragment is resumed
+        resetListView()
 
+    }
+    private fun resetListView() {
+        // Assuming you have a reference to your ListView and Adapter
+        listView.adapter = null // Clear the adapter
+        adapter = WordAdapter(requireContext(), adapterWordList) { word ->
+            onWordClicked(word) // Handle the click event
+        }
+        listView.adapter = adapter // Reinitialize the adapter with your data
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Reset the isLoading flag to ensure fresh state when returning
+        isLoading = false
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }

@@ -102,7 +102,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                android:orientation="vertical"/>
+                android:visibility="visible"
+                android:background="@color/browser_actions_title_color"
+                android:orientation="vertical" />
 
         </LinearLayout>
     </FrameLayout>

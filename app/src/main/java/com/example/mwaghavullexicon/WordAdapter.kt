@@ -15,7 +15,6 @@ class WordAdapter(context: Context, private var wordList: List<Word>, private va
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.listview_item, parent, false)
         val word = getItem(position)
-
         // Display only the term
         view.findViewById<TextView>(R.id.wordTerm_TextView).text = word?.term
 
@@ -29,8 +28,9 @@ class WordAdapter(context: Context, private var wordList: List<Word>, private va
     }
 
     fun updateData(newList: List<Word>) {
-        Log.d("WordAdapter", "New words received: $newList")
-        wordList = newList
+        if (newList != wordList){
+            wordList = newList
+            Log.d("SearchFragment", "updateAdapter word")}
         notifyDataSetChanged()
     }
 }
