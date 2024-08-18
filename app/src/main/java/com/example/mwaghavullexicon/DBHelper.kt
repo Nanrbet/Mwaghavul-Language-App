@@ -19,7 +19,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         private const val ENG_ENG_TABLE = "eng_dic"
         private const val MWA_ENG_TABLE = "mwa_eng"
         private const val ENG_MWA_TABLE = "eng_mwa"
-        private const val BOOKMARK_TABLE = "bookmark"
+        private const val BOOKMARK_TABLE = "bookmark_table"
         private const val COLUMN_ID = "id"
         private const val COLUMN_TERM = "term"
         private const val COLUMN_WORD = "word"
@@ -86,16 +86,30 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                 "$COLUMN_POS TEXT," +
                 "$COLUMN_DEFINITION TEXT," +
                 "$COLUMN_EXAMPLES TEXT)"
+        val createBookmarkTable = "CREATE TABLE IF NOT EXISTS $BOOKMARK_TABLE (" +
+                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_TERM TEXT," +
+                "$COLUMN_PL TEXT," +
+                "$COLUMN_POS TEXT," +
+                "$COLUMN_IPA TEXT," +
+                "$COLUMN_DEFINITION TEXT," +
+                "$COLUMN_EXAMPLES TEXT," +
+                "$COLUMN_TRANSLATION TEXT," +
+                "$COLUMN_AUDIO TEXT," +
+                "$COLUMN_LANGUAGE TEXT," +
+                "$COLUMN_NOTE TEXT)"
 
         db.execSQL(createEngMwaTable)
         db.execSQL(createMwaEngTable)
         db.execSQL(createEngEngTable)
+        db.execSQL(createBookmarkTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $ENG_MWA_TABLE")
         db.execSQL("DROP TABLE IF EXISTS $MWA_ENG_TABLE")
         db.execSQL("DROP TABLE IF EXISTS $ENG_ENG_TABLE")
+        db.execSQL("DROP TABLE IF EXISTS $BOOKMARK_TABLE")
         onCreate(db)
     }
 
@@ -223,14 +237,15 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         }
     }
 
-    fun addBookmark(word: Word, tableName: String) {
+    fun addBookmark(word: Word) {
         db = this.writableDatabase
         val contentValues = ContentValues()
 
+        contentValues.put(COLUMN_ID, word.id)
         contentValues.put(COLUMN_TERM, word.term)
         contentValues.put(COLUMN_PL, word.pl)
         contentValues.put(COLUMN_POS, word.pos)
-        contentValues.put(COLUMN_PRONUNCIATION, word.pronunciation)
+        contentValues.put(COLUMN_IPA, word.pronunciation)
         contentValues.put(COLUMN_DEFINITION, word.definition)
         contentValues.put(COLUMN_EXAMPLES, word.examples)
         contentValues.put(COLUMN_TRANSLATION, word.translation)
@@ -240,14 +255,14 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
 
         try {
             db.insert(BOOKMARK_TABLE, null, contentValues)
-        }catch (e: Exception) {
-            // Handle the exception
-            Log.e("Error", "Error inserting word into bookmark: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("db Error", "Error inserting word into bookmark: ${e.message}")
+        } finally {
+            db.close()
         }
-        db.close()
     }
 
-    fun removeBookmark(word: Word, tableName: String) {
+    fun removeBookmark(word: Word) {
         db = this.writableDatabase
         try {
             db.delete(BOOKMARK_TABLE, "$COLUMN_TERM = ?", arrayOf(word.term))
@@ -258,11 +273,11 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         db.close()
     }
 
-    fun isBookmarked(word: Word, tableName: String): Boolean {
+    fun isBookmarked(word: Word): Boolean {
         val db = this.readableDatabase
-        val query = "SELECT * FROM $BOOKMARK_TABLE WHERE $COLUMN_TERM = ?;"
+        val query = "SELECT * FROM $BOOKMARK_TABLE WHERE $COLUMN_ID = ? AND $COLUMN_TERM = ?;"
 
-        val cursor = db.rawQuery(query, arrayOf(word.term))
+        val cursor = db.rawQuery(query, arrayOf(word.id, word.term))
         val isBookmarked = cursor.count > 0
         cursor.close()
 
@@ -272,8 +287,8 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     fun isWordInBookmark(word: Word): Boolean {
         val db = this.readableDatabase
 
-        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE WHERE upper($COLUMN_TERM) = upper(?) AND upper($COLUMN_POS) = upper(?) AND upper($COLUMN_PRONUNCIATION) = upper(?) AND upper($COLUMN_DEFINITION) = upper(?) AND upper($COLUMN_EXAMPLES) = upper(?) AND upper($COLUMN_TRANSLATION) = upper(?);",
-            arrayOf(word.term.uppercase(), word.pos.uppercase(), word.pronunciation.uppercase(), word.definition.uppercase(), word.examples.uppercase(), word.translation.uppercase()))
+        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE WHERE id = ? AND upper($COLUMN_TERM) = upper(?) AND upper($COLUMN_POS) = upper(?) AND upper($COLUMN_PRONUNCIATION) = upper(?) AND upper($COLUMN_DEFINITION) = upper(?) AND upper($COLUMN_EXAMPLES) = upper(?) AND upper($COLUMN_TRANSLATION) = upper(?);",
+            arrayOf(word.id, word.term.uppercase(), word.pos.uppercase(), word.pronunciation.uppercase(), word.definition.uppercase(), word.examples.uppercase(), word.translation.uppercase()))
         val isFound = cursor.moveToFirst()
         cursor.close()
         db.close()
@@ -288,14 +303,17 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         if (cursor.moveToFirst()) {
             do {
                 val word = Word(
+                    id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
                     term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TERM)),
                     pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
                     pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                    pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(
-                        COLUMN_PRONUNCIATION)),
+                    pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRONUNCIATION)),
+                    definition = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
+                    examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES)),
                     translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TRANSLATION)),
-                    definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
-                    examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                    audio = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AUDIO)),
+                    language = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LANGUAGE)),
+                    note = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NOTE))
                 )
                 words.add(word)
             } while (cursor.moveToNext())

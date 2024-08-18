@@ -144,7 +144,6 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         // Create an instance of DetailFragment
         val fragment = DetailFragment()
         // Pass the selectedWord to the next fragment
-        Toast.makeText(requireContext(), "Clicked: ${word.term}", Toast.LENGTH_SHORT).show()
         navigateToNextFragment(word, fragment::class.java, R.id.main_fragment_container)
     }
     private fun navigateToNextFragment(selectedWord: Word?, fragmentClass: Class<out Fragment>, containerId: Int) {

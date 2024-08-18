@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
 
 class DetailFragment : Fragment() {
+    private lateinit var dbHelper: DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,8 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        dbHelper = DBHelper(requireContext(), null)
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
@@ -59,13 +63,29 @@ class DetailFragment : Fragment() {
 
         // Bookmark button
         val bookmarkImageButton: ImageButton = view.findViewById(R.id.bookmark_image_btn)
+        // Check if the word is bookmarked initially
+        if (selectedWord != null && dbHelper.isBookmarked(selectedWord)) {
+            bookmarkImageButton.setImageResource(R.drawable.filled_bookmark_24)
+            bookmarkImageButton.tag = 1 // Set tag to indicate bookmarked state
+        } else {
+            bookmarkImageButton.setImageResource(R.drawable.outline_bookmark_border_24)
+            bookmarkImageButton.tag = 0 // Set tag to indicate non-bookmarked state
+        }
         // Set click listener for bookmarking
         bookmarkImageButton.setOnClickListener {
             val currentState = bookmarkImageButton.tag as? Int ?: 0
             bookmarkImageButton.tag = if (currentState == 0) {
+                if (selectedWord != null) {
+                    dbHelper.addBookmark(selectedWord)
+                    Toast.makeText(requireContext(), "addBookMark: ${selectedWord.term}", Toast.LENGTH_SHORT).show()
+                }
                 bookmarkImageButton.setImageResource(R.drawable.filled_bookmark_24)
                 1
             } else {
+                if (selectedWord != null) {
+                    dbHelper.removeBookmark(selectedWord)
+                    Toast.makeText(requireContext(), "removeBookmark: ${selectedWord.term}", Toast.LENGTH_SHORT).show()
+                }
                 bookmarkImageButton.setImageResource(R.drawable.outline_bookmark_border_24)
                 0
             }

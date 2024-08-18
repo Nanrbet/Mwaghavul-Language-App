@@ -52,6 +52,7 @@ class BookmarkFragment : Fragment() {
         bookmarkList.adapter = bookmarkAdapter
     }
 
+    @Deprecated("Deprecated in Java", ReplaceWith("inflater.inflate(R.menu.menu_clear, menu)"))
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_clear, menu)
     }
