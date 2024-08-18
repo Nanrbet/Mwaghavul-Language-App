@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     item.setIcon(R.drawable.filled_star_24)
                 }
                 R.id.nav_history -> {
-                    openFragment(HistoryFragment(), "history", true)
+                    openFragment(HistoryFragment(dbHelper), "history", true)
                 }
             }
             true

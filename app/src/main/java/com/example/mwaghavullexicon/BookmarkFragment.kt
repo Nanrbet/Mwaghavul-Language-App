@@ -12,7 +12,9 @@ import android.widget.ListView
 import android.widget.Toast
 
 class BookmarkFragment (private var dbHelper: DBHelper): Fragment()  {
-       override fun onCreate(savedInstanceState: Bundle?) {
+    private val BOOKMARK_TABLE = "bookmark_table"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
@@ -30,7 +32,7 @@ class BookmarkFragment (private var dbHelper: DBHelper): Fragment()  {
 
         val bookmarkList : ListView = view.findViewById(R.id.bookmark_list)
         // Implement the listener inline
-        val bookmarkAdapter = BookmarkAdapter(requireActivity(), dbHelper.getAllWordsFromBookmark().toMutableList(),
+        val bookmarkAdapter = BookmarkAdapter(requireActivity(), dbHelper.getAllWordsFromTable(BOOKMARK_TABLE).toMutableList(),
             listener = { word ->
                 Toast.makeText(requireActivity(), "Clicked: ${word.term}", Toast.LENGTH_SHORT).show()
 

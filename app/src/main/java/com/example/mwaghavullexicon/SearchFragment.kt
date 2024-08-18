@@ -147,6 +147,10 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         navigateToNextFragment(word, fragment::class.java, R.id.main_fragment_container)
     }
     private fun navigateToNextFragment(selectedWord: Word?, fragmentClass: Class<out Fragment>, containerId: Int) {
+        val HISTORY_TABLE = "history_table"
+        if (selectedWord != null) {
+            dbHelper.addWordToTable(selectedWord, HISTORY_TABLE)
+        }
         selectedWord?.let {
             val bundle = Bundle().apply {
                 putParcelable("selected_word", it) // Ensure Word implements Parcelable

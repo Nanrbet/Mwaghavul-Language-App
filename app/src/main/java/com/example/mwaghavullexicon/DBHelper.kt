@@ -20,6 +20,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         private const val MWA_ENG_TABLE = "mwa_eng"
         private const val ENG_MWA_TABLE = "eng_mwa"
         private const val BOOKMARK_TABLE = "bookmark_table"
+        private const val HISTORY_TABLE = "history_table"
         private const val COLUMN_ID = "id"
         private const val COLUMN_TERM = "term"
         private const val COLUMN_WORD = "word"
@@ -98,11 +99,24 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                 "$COLUMN_AUDIO TEXT," +
                 "$COLUMN_LANGUAGE TEXT," +
                 "$COLUMN_NOTE TEXT)"
+        val createHistoryTable = "CREATE TABLE IF NOT EXISTS $HISTORY_TABLE (" +
+                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_TERM TEXT," +
+                "$COLUMN_PL TEXT," +
+                "$COLUMN_POS TEXT," +
+                "$COLUMN_IPA TEXT," +
+                "$COLUMN_DEFINITION TEXT," +
+                "$COLUMN_EXAMPLES TEXT," +
+                "$COLUMN_TRANSLATION TEXT," +
+                "$COLUMN_AUDIO TEXT," +
+                "$COLUMN_LANGUAGE TEXT," +
+                "$COLUMN_NOTE TEXT)"
 
         db.execSQL(createEngMwaTable)
         db.execSQL(createMwaEngTable)
         db.execSQL(createEngEngTable)
         db.execSQL(createBookmarkTable)
+        db.execSQL(createHistoryTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -110,6 +124,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         db.execSQL("DROP TABLE IF EXISTS $MWA_ENG_TABLE")
         db.execSQL("DROP TABLE IF EXISTS $ENG_ENG_TABLE")
         db.execSQL("DROP TABLE IF EXISTS $BOOKMARK_TABLE")
+        db.execSQL("DROP TABLE IF EXISTS $HISTORY_TABLE")
         onCreate(db)
     }
 
@@ -256,12 +271,45 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         try {
             db.insert(BOOKMARK_TABLE, null, contentValues)
         } catch (e: Exception) {
-            Log.e("db Error", "Error inserting word into bookmark: ${e.message}")
+            Log.e("db Error", "Error inserting word into table: ${e.message}")
         } finally {
             db.close()
         }
     }
+    fun addWordToTable(word: Word, tableName: String) {
+        db = this.writableDatabase
+        val contentValues = ContentValues()
 
+        contentValues.put(COLUMN_ID, word.id)
+        contentValues.put(COLUMN_TERM, word.term)
+        contentValues.put(COLUMN_PL, word.pl)
+        contentValues.put(COLUMN_POS, word.pos)
+        contentValues.put(COLUMN_IPA, word.pronunciation)
+        contentValues.put(COLUMN_DEFINITION, word.definition)
+        contentValues.put(COLUMN_EXAMPLES, word.examples)
+        contentValues.put(COLUMN_TRANSLATION, word.translation)
+        contentValues.put(COLUMN_AUDIO, word.audio)
+        contentValues.put(COLUMN_LANGUAGE, word.language)
+        contentValues.put(COLUMN_NOTE, System.currentTimeMillis().toString())
+
+        try {
+            db.insert(tableName, null, contentValues)
+        } catch (e: Exception) {
+            Log.e("db Error", "Error inserting word into table $tableName: ${e.message}")
+        } finally {
+            db.close()
+        }
+    }
+    fun removeFromTable(word: Word, tableName: String) {
+        db = this.writableDatabase
+        try {
+            db.delete(tableName, "$COLUMN_ID = ? AND $COLUMN_TERM = ?", arrayOf(word.id, word.term))
+        }catch (e: Exception) {
+            // Handle the exception
+            Log.e("Error", "Error deleting word from $tableName: ${e.message}")
+        }
+        db.close()
+    }
     fun removeBookmark(word: Word) {
         db = this.writableDatabase
         try {
@@ -295,11 +343,11 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return isFound
     }
 
-    fun getAllWordsFromBookmark(): List<Word> {
+    fun getAllWordsFromTable(tableName: String): List<Word> {
         val words = mutableListOf<Word>()
         val db = this.readableDatabase
 
-        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE ORDER BY $COLUMN_NOTE DESC;", null)
+        val cursor = db.rawQuery("SELECT * FROM $tableName ORDER BY $COLUMN_NOTE DESC;", null)
         if (cursor.moveToFirst()) {
             do {
                 val word = Word(
@@ -392,5 +440,27 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     }
     private fun getDicType(): Int {
         return Global.getState(context, "dic_type")?.toIntOrNull() ?: R.id.english_mwaghavul
+    }
+
+    fun getHistoryCount(): Int {
+        val countQuery = "SELECT COUNT(*) FROM history_table"
+        this.readableDatabase.use { db ->
+            val cursor = db.rawQuery(countQuery, null)
+            cursor.use {
+                if (it.moveToFirst()) {
+                    return it.getInt(0)
+                }
+            }
+        }
+        return 0
+    }
+
+    fun deleteOldestEntries(numberOfEntriesToDelete: Int) {
+        // Deleting the oldest entries, Only run if the number is positive
+        if (numberOfEntriesToDelete > 0) {
+            this.writableDatabase.use { db ->
+                db.execSQL("DELETE FROM history_table WHERE note IN (SELECT note FROM history_table ORDER BY note ASC LIMIT ?)", arrayOf(numberOfEntriesToDelete))
+            }
+        }
     }
 }
