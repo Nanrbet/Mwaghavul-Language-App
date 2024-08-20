@@ -11,6 +11,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
+public const val BOOKMARK_TABLE = "bookmark_table"
+public const val HISTORY_TABLE = "history_table"
+
 class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION){
     companion object {
@@ -19,8 +22,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         private const val ENG_ENG_TABLE = "eng_dic"
         private const val MWA_ENG_TABLE = "mwa_eng"
         private const val ENG_MWA_TABLE = "eng_mwa"
-        private const val BOOKMARK_TABLE = "bookmark_table"
-        private const val HISTORY_TABLE = "history_table"
         private const val COLUMN_ID = "id"
         private const val COLUMN_TERM = "term"
         private const val COLUMN_WORD = "word"
@@ -56,7 +57,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         if (!databaseContainsWords()) {
             Log.d("DBHelper", "Database does not contain words. Copying data from assets.")
             try {
-                extractAssetToDatabaseDirectory(DATABASE_NAME)
+                extractAssetToDatabaseDirectory()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -169,7 +170,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                     translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
                     examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
                 )
-//                Log.d("DBHelper", "Fetched word: $word")
                 return word
             }
             R.id.english_mwaghavul -> {
@@ -182,7 +182,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                     term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
                     examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
                 )
-//                Log.d("DBHelper", "Fetched word: $word")
                 return word
             }
             R.id.english_english -> {
@@ -193,7 +192,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                     definition =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
                     examples =  cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
                 )
-//                Log.d("DBHelper", "Fetched word: $word")
                 return word
             }
             else -> Word(
@@ -252,30 +250,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         }
     }
 
-    fun addBookmark(word: Word) {
-        db = this.writableDatabase
-        val contentValues = ContentValues()
-
-        contentValues.put(COLUMN_ID, word.id)
-        contentValues.put(COLUMN_TERM, word.term)
-        contentValues.put(COLUMN_PL, word.pl)
-        contentValues.put(COLUMN_POS, word.pos)
-        contentValues.put(COLUMN_IPA, word.pronunciation)
-        contentValues.put(COLUMN_DEFINITION, word.definition)
-        contentValues.put(COLUMN_EXAMPLES, word.examples)
-        contentValues.put(COLUMN_TRANSLATION, word.translation)
-        contentValues.put(COLUMN_AUDIO, word.audio)
-        contentValues.put(COLUMN_LANGUAGE, word.language)
-        contentValues.put(COLUMN_NOTE, System.currentTimeMillis().toString())
-
-        try {
-            db.insert(BOOKMARK_TABLE, null, contentValues)
-        } catch (e: Exception) {
-            Log.e("db Error", "Error inserting word into table: ${e.message}")
-        } finally {
-            db.close()
-        }
-    }
     fun addWordToTable(word: Word, tableName: String) {
         db = this.writableDatabase
         val contentValues = ContentValues()
@@ -424,8 +398,8 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return totalRowCount > 0
     }
 
-    private fun extractAssetToDatabaseDirectory(fileName: String) {
-        val inputStream = context.assets.open(fileName)
+    private fun extractAssetToDatabaseDirectory() {
+        val inputStream = context.assets.open(DATABASE_NAME)
         val outputFile = File(DATABASE_FULL_PATH)
         val outputStream = FileOutputStream(outputFile)
 
