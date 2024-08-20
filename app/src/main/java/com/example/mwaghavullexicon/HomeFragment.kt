@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment
 class HomeFragment : Fragment() {
 
     private lateinit var selectedWord: Word
-    private var isWordInitialized: Boolean = false // Track if the word has been initialize
     // Declare TextViews
     private lateinit var textView: TextView
     private lateinit var posTextView: TextView
