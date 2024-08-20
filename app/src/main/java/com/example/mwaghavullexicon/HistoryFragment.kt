@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
 
 class HistoryFragment() : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +31,6 @@ class HistoryFragment() : Fragment() {
         // Implement the listener inline
         val historyAdapter = HistoryAdapter(requireActivity(), dbHelper.getAllWordsFromTable(HISTORY_TABLE).toMutableList(),
             listener = { word ->
-                Toast.makeText(requireActivity(), "Clicked: ${word.term}", Toast.LENGTH_SHORT).show()
-
                 // Navigate to DetailFragment when an item is clicked
                 val fragment = DetailFragment()
                 word.let {

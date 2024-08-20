@@ -190,21 +190,18 @@ class SearchFragment() : Fragment()  {
                 Global.saveState(requireActivity(), "dic_type", id.toString())
                 adapterWordList.clear()
                 viewModel.loadInitialWords()
-                Toast.makeText(requireContext(), "Mwaghavul - English clicked", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.english_mwaghavul -> {
                 Global.saveState(requireActivity(), "dic_type", id.toString())
                 adapterWordList.clear()
                 viewModel.loadInitialWords()
-                Toast.makeText(requireContext(), "English - Mwaghavul clicked", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.english_english -> {
                 Global.saveState(requireActivity(), "dic_type", id.toString())
                 adapterWordList.clear()
                 viewModel.loadInitialWords()
-                Toast.makeText(requireContext(), "English - English clicked", Toast.LENGTH_LONG).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -271,20 +268,4 @@ class SearchFragment() : Fragment()  {
 //        }
     }
 
-    private fun resetDataSource(data: List<Word>, append: Boolean = false) {
-//        if (append) {
-//            source = source + data // Append the new data to the existing list
-//        } else {
-//            source = data
-//        }
-//
-//        val termList = source.map { it.term }
-//
-//        // Create a new adapter if it doesn't exist
-//        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, termList)
-//        listView.adapter = adapter
-        Toast.makeText(requireContext(), "init adapter change", Toast.LENGTH_LONG).show()
-
-        isLoading = false
-    }
 }

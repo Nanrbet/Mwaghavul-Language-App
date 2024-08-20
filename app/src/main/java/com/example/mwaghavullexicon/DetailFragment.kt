@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
@@ -69,14 +68,12 @@ class DetailFragment : Fragment() {
             bookmarkImageButton.tag = if (currentState == 0) {
                 if (selectedWord != null) {
                     dbHelper.addWordToTable(selectedWord, BOOKMARK_TABLE)
-                    Toast.makeText(requireContext(), "addBookMark: ${selectedWord.term}", Toast.LENGTH_SHORT).show()
                 }
                 bookmarkImageButton.setImageResource(R.drawable.filled_bookmark_24)
                 1
             } else {
                 if (selectedWord != null) {
                     dbHelper.removeFromTable(selectedWord, BOOKMARK_TABLE)
-                    Toast.makeText(requireContext(), "removeBookmark: ${selectedWord.term}", Toast.LENGTH_SHORT).show()
                 }
                 bookmarkImageButton.setImageResource(R.drawable.outline_bookmark_border_24)
                 0

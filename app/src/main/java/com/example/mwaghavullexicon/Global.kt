@@ -45,9 +45,7 @@ object Global {
     fun isNewDay(context: Context): Boolean {
         val lastFetchDate = getState(context, LAST_FETCH_KEY)
         val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().time)
-        // Print the dates for comparison
-        Log.d("date","Last Fetch Date: $lastFetchDate")
-        Log.d("date","Current Date: $currentDate")
+
         return lastFetchDate != currentDate
     }
 
