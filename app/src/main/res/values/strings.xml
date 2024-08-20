@@ -1,7 +1,7 @@
 <resources>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="pronunciation_format">/%1$s/</string>
     <string name="app_name">Mwaghavul Lexicon</string>
     <string name="network">NETWORK</string>
     <string name="bookmark">Bookmark</string>
@@ -23,4 +23,11 @@
     <string name="examples">Examples:</string>
     <string name="definition">Definition:</string>
     <string name="ipa">IPA:</string>
+    <string name="search_box">Search…</string>
+    <string name="search_icon">search_icon</string>
+    <string name="forward_arrow">forward arrow</string>
+    <string name="part_of_speech">Part of Speech</string>
+    <string name="speaker_button">speaker_button</string>
+    <string name="bookmark_button">bookmark_button</string>
+    <string name="new_word">New Word</string>
 </resources>

@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.ads.mediationtestsuite.viewmodels.ViewModelFactory
 
 
-class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
+class SearchFragment() : Fragment()  {
 
     private lateinit var listView: ListView
     private lateinit var adapter: WordAdapter
@@ -147,7 +147,6 @@ class SearchFragment(private var dbHelper: DBHelper) : Fragment()  {
         navigateToNextFragment(word, fragment::class.java, R.id.main_fragment_container)
     }
     private fun navigateToNextFragment(selectedWord: Word?, fragmentClass: Class<out Fragment>, containerId: Int) {
-        val HISTORY_TABLE = "history_table"
         if (selectedWord != null) {
             dbHelper.addWordToTable(selectedWord, HISTORY_TABLE)
         }

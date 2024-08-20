@@ -1,6 +1,5 @@
 package com.example.mwaghavullexicon
 
-import Word
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -18,12 +17,13 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
+lateinit var dbHelper: DBHelper
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var dbHelper: DBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,15 +53,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     openFragment(HomeFragment(), "home", true)
                 }
                 R.id.nav_search -> {
-                    openFragment(SearchFragment(dbHelper), "search", true)
+                    openFragment(SearchFragment(), "search", true)
                 }
                 R.id.nav_bookmark -> {
-                    openFragment(BookmarkFragment(dbHelper), "bookmark", true)
+                    openFragment(BookmarkFragment(), "bookmark", true)
                     // Change the icon to filled star
                     item.setIcon(R.drawable.filled_star_24)
                 }
                 R.id.nav_history -> {
-                    openFragment(HistoryFragment(dbHelper), "history", true)
+                    openFragment(HistoryFragment(), "history", true)
                 }
             }
             true

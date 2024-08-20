@@ -12,9 +12,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/search_badge"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:elevation="0dp"
-        android:translationZ="0.1dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -54,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_search"
-                android:contentDescription="search_icon"
+                android:contentDescription="@string/search_icon"
                 android:layout_gravity="center_vertical" />
 
             <EditText
@@ -62,9 +60,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Search..."
+                android:autofillHints=""
+                android:hint="@string/search_box"
                 android:background="@android:color/transparent"
-                android:padding="8dp"
+                android:inputType="textAutoComplete"
+                android:padding="12dp"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/darker_gray" />
 
@@ -92,6 +92,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/colorBackground"
             android:background="@drawable/rounded_top_right_corner"
             android:padding="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -103,7 +104,9 @@
                 android:layout_height="match_parent"
                 android:scrollbars="none"
                 android:visibility="visible"
-                android:background="@color/browser_actions_title_color"
+                android:paddingTop="4dp"
+                android:divider="@color/colorBackground"
+                android:dividerHeight="6dp"
                 android:orientation="vertical" />
 
         </LinearLayout>

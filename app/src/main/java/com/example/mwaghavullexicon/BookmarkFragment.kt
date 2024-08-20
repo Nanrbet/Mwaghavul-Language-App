@@ -11,8 +11,7 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 
-class BookmarkFragment (private var dbHelper: DBHelper): Fragment()  {
-    private val BOOKMARK_TABLE = "bookmark_table"
+class BookmarkFragment (): Fragment()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

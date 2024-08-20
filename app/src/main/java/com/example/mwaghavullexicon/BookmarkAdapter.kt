@@ -54,7 +54,7 @@ class BookmarkAdapter(
         // Handle delete button click
         viewHolder.btnDelete.setOnClickListener {
             // Remove the bookmark from the database
-            dbHelper.removeBookmark(word)
+            dbHelper.removeFromTable(word, BOOKMARK_TABLE)
 
             // Remove the item from the list and notify the adapter
             wordList.removeAt(position)

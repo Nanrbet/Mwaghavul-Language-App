@@ -6,20 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
-
 class DetailFragment : Fragment() {
-    private lateinit var dbHelper: DBHelper
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,11 +42,11 @@ class DetailFragment : Fragment() {
         }
 
         // Pronunciation
-        val pronunciationLabel: TextView = view.findViewById(R.id.pronunciation_label)
+        val pronunciationLabel: CardView = view.findViewById(R.id.pronunciation_label)
         val pronunciationTextView: TextView = view.findViewById(R.id.pronunciation_text)
         if (!selectedWord?.pronunciation.isNullOrEmpty()) {
             pronunciationLabel.visibility = View.VISIBLE
-            pronunciationTextView.text = "/${selectedWord!!?.pronunciation}/"
+            pronunciationTextView.text = getString(R.string.pronunciation_format, selectedWord!!.pronunciation)
         }
 
         // Audio button
@@ -76,14 +68,14 @@ class DetailFragment : Fragment() {
             val currentState = bookmarkImageButton.tag as? Int ?: 0
             bookmarkImageButton.tag = if (currentState == 0) {
                 if (selectedWord != null) {
-                    dbHelper.addBookmark(selectedWord)
+                    dbHelper.addWordToTable(selectedWord, BOOKMARK_TABLE)
                     Toast.makeText(requireContext(), "addBookMark: ${selectedWord.term}", Toast.LENGTH_SHORT).show()
                 }
                 bookmarkImageButton.setImageResource(R.drawable.filled_bookmark_24)
                 1
             } else {
                 if (selectedWord != null) {
-                    dbHelper.removeBookmark(selectedWord)
+                    dbHelper.removeFromTable(selectedWord, BOOKMARK_TABLE)
                     Toast.makeText(requireContext(), "removeBookmark: ${selectedWord.term}", Toast.LENGTH_SHORT).show()
                 }
                 bookmarkImageButton.setImageResource(R.drawable.outline_bookmark_border_24)
@@ -92,7 +84,7 @@ class DetailFragment : Fragment() {
         }
 
         // Definition
-        val definitionLabel: LinearLayout = view.findViewById(R.id.definition_label)
+        val definitionLabel: CardView = view.findViewById(R.id.definition_label)
         val definitionTextView: TextView = view.findViewById(R.id.definition_text)
         if (!selectedWord?.definition.isNullOrEmpty()) {
             definitionLabel.visibility = View.VISIBLE
@@ -102,7 +94,7 @@ class DetailFragment : Fragment() {
         }
 
         // Examples
-        val examplesLabel: LinearLayout = view.findViewById(R.id.examples_label)
+        val examplesLabel: CardView = view.findViewById(R.id.examples_label)
         val examplesTextView: TextView = view.findViewById(R.id.examples_text)
         if (!selectedWord?.examples.isNullOrEmpty()) {
             examplesLabel.visibility = View.VISIBLE

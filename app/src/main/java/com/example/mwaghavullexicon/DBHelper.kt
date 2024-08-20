@@ -11,8 +11,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-public const val BOOKMARK_TABLE = "bookmark_table"
-public const val HISTORY_TABLE = "history_table"
+const val BOOKMARK_TABLE = "bookmark_table"
+const val HISTORY_TABLE = "history_table"
 
 class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION){
@@ -39,15 +39,15 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         private const val COLUMN_EXAMPLES = "examples"
 
     }
-    private val DATABASE_LOCATION = "data/data/${context.packageName}/databases/"
-    private val DATABASE_FULL_PATH = "$DATABASE_LOCATION$DATABASE_NAME"
+    private val databaseLocation = "data/data/${context.packageName}/databases/"
+    private val databaseFullPath = "$databaseLocation$DATABASE_NAME"
     private var db : SQLiteDatabase
 
     init {
         if (!databaseExists()) {
             Log.d("DBHelper", "Database does not exist. Creating database.")
             try {
-                val dbLocation = File(DATABASE_LOCATION)
+                val dbLocation = File(databaseLocation)
                 dbLocation.mkdirs()
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -62,7 +62,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                 e.printStackTrace()
             }
         }
-        db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FULL_PATH, null)
+        db = SQLiteDatabase.openOrCreateDatabase(databaseFullPath, null)
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -231,12 +231,16 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
 
     private fun getTableName(dicType: Int): String {
         var tableName = ""
-        if (dicType == R.id.mwaghavul_english){
-            tableName = MWA_ENG_TABLE
-        }else if (dicType == R.id.english_mwaghavul){
-            tableName = ENG_MWA_TABLE
-        }else if (dicType == R.id.english_english){
-            tableName = ENG_ENG_TABLE
+        when (dicType) {
+            R.id.mwaghavul_english -> {
+                tableName = MWA_ENG_TABLE
+            }
+            R.id.english_mwaghavul -> {
+                tableName = ENG_MWA_TABLE
+            }
+            R.id.english_english -> {
+                tableName = ENG_ENG_TABLE
+            }
         }
         return tableName
     }
@@ -281,16 +285,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         }catch (e: Exception) {
             // Handle the exception
             Log.e("Error", "Error deleting word from $tableName: ${e.message}")
-        }
-        db.close()
-    }
-    fun removeBookmark(word: Word) {
-        db = this.writableDatabase
-        try {
-            db.delete(BOOKMARK_TABLE, "$COLUMN_ID = ? AND $COLUMN_TERM = ?", arrayOf(word.id, word.term))
-        }catch (e: Exception) {
-            // Handle the exception
-            Log.e("Error", "Error deleting word from bookmark: ${e.message}")
         }
         db.close()
     }
@@ -370,14 +364,14 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     }
 
     private fun databaseExists(): Boolean {
-        val dbFile = File(DATABASE_FULL_PATH)
+        val dbFile = File(databaseFullPath)
         return dbFile.exists()
     }
 
     private fun databaseContainsWords(): Boolean {
         var totalRowCount = 0
 
-        val db = SQLiteDatabase.openOrCreateDatabase(DATABASE_FULL_PATH, null)
+        val db = SQLiteDatabase.openOrCreateDatabase(databaseFullPath, null)
         val cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name != 'android_metadata'", null)
 
         while (cursor.moveToNext()) {
@@ -400,7 +394,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
 
     private fun extractAssetToDatabaseDirectory() {
         val inputStream = context.assets.open(DATABASE_NAME)
-        val outputFile = File(DATABASE_FULL_PATH)
+        val outputFile = File(databaseFullPath)
         val outputStream = FileOutputStream(outputFile)
 
         val buffer = ByteArray(8192)
@@ -416,6 +410,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return Global.getState(context, "dic_type")?.toIntOrNull() ?: R.id.english_mwaghavul
     }
 
+    // For History Fragment
     fun getHistoryCount(): Int {
         val countQuery = "SELECT COUNT(*) FROM history_table"
         this.readableDatabase.use { db ->
@@ -436,5 +431,65 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
                 db.execSQL("DELETE FROM history_table WHERE note IN (SELECT note FROM history_table ORDER BY note ASC LIMIT ?)", arrayOf(numberOfEntriesToDelete))
             }
         }
+    }
+
+    // For Home Fragment
+    fun getRandomWord(): Word {
+        // Step 1: Define the list of table names
+        val tableNames = listOf(
+            MWA_ENG_TABLE,
+            ENG_MWA_TABLE,
+            ENG_ENG_TABLE
+        )
+
+        // Randomly select a table name
+        val randomTableName = tableNames.random()
+
+        // Query to select a random word from the selected table
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $randomTableName ORDER BY RANDOM() LIMIT 1;", null)
+
+        if (cursor.moveToFirst()) {
+            return when (randomTableName) {
+                MWA_ENG_TABLE -> {
+                    Word(
+                        id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                        term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
+                        pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
+                        pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                        pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
+                        translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
+                        examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                    )
+                }
+                ENG_MWA_TABLE -> {
+                    Word(
+                        id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                        translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MWAGHAVUL)),
+                        pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
+                        pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                        pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IPA)),
+                        term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GLOSS)),
+                        examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                    )
+                }
+                ENG_ENG_TABLE -> {
+                    Word(
+                        id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                        term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WORD)),
+                        pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
+                        definition = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
+                        examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES))
+                    )
+                }
+                else -> throw IllegalArgumentException("Unexpected table name: $randomTableName")
+            }
+        }
+
+        cursor.close()
+        db.close()
+
+        // If the cursor is empty, throw an exception
+        throw RuntimeException("No words found in the selected RANDOM table, dbHelper")
     }
 }
