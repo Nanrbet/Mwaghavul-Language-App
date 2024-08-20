@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+const val SELECTED_DICTIONARY_KEY = "dictionary_type"
+
 object Global {
     private const val PREF_NAME = "mwaghavul_lexicon_prefs"
     private const val LAST_FETCH_KEY = "lastFetchDate"

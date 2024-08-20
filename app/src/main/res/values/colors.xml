@@ -11,6 +11,6 @@
     <color name="colorPrimaryDark">#327334</color>
     <color name="colorAsh">#E4E3E3</color>
     <color name="colorPrimaryDark_Transparent">#8A327334</color>
-    <color name="colorBackground">#C5CEE7</color>
+    <color name="colorBackground">#EDEFF4</color>
     <color name="colorAccent">#FBE202</color>
 </resources>

@@ -141,7 +141,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         }
 
         // Pagination Logic
-        val cursor = db.rawQuery("SELECT * FROM $tableName LIMIT $limit OFFSET $offset;", null)
+        val cursor = db.rawQuery("SELECT * FROM $tableName LIMIT $limit OFFSET $offset", null)
         Log.d("DBHelper", "Query executed: SELECT * FROM $tableName LIMIT $limit OFFSET $offset;")
         try {
             if (cursor.moveToFirst()) {
@@ -231,6 +231,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
 
     private fun getTableName(dicType: Int): String {
         var tableName = ""
+        Log.d("FATAL", "tableName $tableName")
         when (dicType) {
             R.id.mwaghavul_english -> {
                 tableName = MWA_ENG_TABLE
@@ -407,7 +408,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         inputStream.close()
     }
     private fun getDicType(): Int {
-        return Global.getState(context, "dic_type")?.toIntOrNull() ?: R.id.english_mwaghavul
+        return Global.getState(context, SELECTED_DICTIONARY_KEY)?.toIntOrNull() ?: R.id.english_mwaghavul
     }
 
     // For History Fragment

@@ -170,7 +170,7 @@ class SearchFragment() : Fragment()  {
         inflater.inflate(R.menu.main_options, menu)
         //tODO: make menuSetting =menu.findItem(R.id.action_setting)
         // so that translation can change icon when selected
-        val id = Global.getState(requireContext(), "dic_type")?.toIntOrNull()
+        val id = Global.getState(requireContext(), SELECTED_DICTIONARY_KEY)?.toIntOrNull()
         if (id != null) {
             val menuItem = menu.findItem(id)
             if (menuItem != null) {
@@ -187,19 +187,19 @@ class SearchFragment() : Fragment()  {
 
         return when (item.itemId) {
             R.id.mwaghavul_english -> {
-                Global.saveState(requireActivity(), "dic_type", id.toString())
+                Global.saveState(requireActivity(), SELECTED_DICTIONARY_KEY, id.toString())
                 adapterWordList.clear()
                 viewModel.loadInitialWords()
                 true
             }
             R.id.english_mwaghavul -> {
-                Global.saveState(requireActivity(), "dic_type", id.toString())
+                Global.saveState(requireActivity(), SELECTED_DICTIONARY_KEY, id.toString())
                 adapterWordList.clear()
                 viewModel.loadInitialWords()
                 true
             }
             R.id.english_english -> {
-                Global.saveState(requireActivity(), "dic_type", id.toString())
+                Global.saveState(requireActivity(), SELECTED_DICTIONARY_KEY, id.toString())
                 adapterWordList.clear()
                 viewModel.loadInitialWords()
                 true
