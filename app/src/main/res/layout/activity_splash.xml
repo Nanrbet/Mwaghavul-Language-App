@@ -7,9 +7,11 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/mwaghavul_logo"
-        android:src="@mipmap/mwa_logo_round" />
+        android:src="@mipmap/mwa_logo_round"
+        android:background="@drawable/circular_mask"
+        android:clipToOutline="true"/>
 </RelativeLayout>
