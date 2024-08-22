@@ -7,6 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ViewModelFactory(private val dbHelper: DBHelper) : ViewModelProvider.Factory {
@@ -24,6 +27,7 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
 
     private var offset = 0
     private val limit = 7
+    private var initialWordsLoaded = false // Flag to track initial load
     init {
         _words.value = mutableListOf()
     }
@@ -34,9 +38,16 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
         val updatedWords = initialWords.toMutableList()
         // Update the LiveData with the new list
         _words.value = updatedWords
+        // Set the flag to true after loading initial words
+        initialWordsLoaded = true
     }
 
     fun loadMoreWords() {
+        // Check if initial words have been loaded
+        if (!initialWordsLoaded) {
+            Log.d("WordLoader", "Initial words not loaded. Skipping loadMoreWords.")
+            return
+        }
         offset += limit
         val moreWords = dbHelper.getWords(limit, offset)
         // Check if _words.value is not null and add the new words to the existing list
@@ -47,5 +58,18 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
     }
     private fun <T> MutableLiveData<T>.notifyObserver() {
         this.value = this.value
+    }
+}
+
+class MainViewModel: ViewModel(){
+
+    private val _isReady = MutableStateFlow(false)
+    val isReady = _isReady.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            delay(3000L)
+            _isReady.value = true
+        }
     }
 }

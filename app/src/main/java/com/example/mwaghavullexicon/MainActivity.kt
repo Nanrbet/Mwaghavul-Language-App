@@ -6,20 +6,25 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.Surface
+import android.view.View
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.mwaghavullexicon.databinding.ActivityMainBinding
+import com.example.mwaghavullexicon.ui.theme.MwaghavulLexiconTheme
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -31,48 +36,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Apply theme before calling super.onCreate
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
         installSplashScreen().apply{
             setKeepOnScreenCondition{
                 !viewModel.isReady.value
             }
-            setOnExitAnimationListener{ screen ->
-                val zoomX = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    view.SCALE_X,
-                    0.4f,
-                    0.0f
-                )
-                zoomX.interpolator = OvershootInterpolator()
-                zoomX.duration = 500L
-                zoomX.doOnEnd{screen.remove()}
-
-                val zoomY = ObjectAnimator.ofFloat(
-                    screen.iconView,
-                    view.SCALE_X,
-                    0.4f,
-                    0.0f
-                )
-                zoomY.interpolator = OvershootInterpolator()
-                zoomY.duration = 500L
-                zoomY.doOnEnd{screen.remove()}
-
-                zoomX.start()
-                zoomY.start()
-            }
+//            setOnExitAnimationListener{ screen ->
+//                val zoomX = ObjectAnimator.ofFloat(
+//                    screen.iconView,
+//                    View.SCALE_X,
+//                    0.4f,
+//                    0.0f
+//                )
+//                zoomX.interpolator = OvershootInterpolator()
+//                zoomX.duration = 500L
+//                zoomX.doOnEnd{screen.remove()}
+//
+//                val zoomY = ObjectAnimator.ofFloat(
+//                    screen.iconView,
+//                    View.SCALE_X,
+//                    0.4f,
+//                    0.0f
+//                )
+//                zoomY.interpolator = OvershootInterpolator()
+//                zoomY.duration = 500L
+//                zoomY.doOnEnd{screen.remove()}
+//
+//                zoomX.start()
+//                zoomY.start()
+//            }
         }
-        setContent(AnimatedSplashScreenTheme{
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colorScheme.background
-            ){
-                Greeting("Android")
-            }
-        })
 
+////        // Use setContent for Jetpack Compose UI
+//        setContent {
+//            MwaghavulLexiconTheme() {
+//                Surface(
+//                    modifier = Modifier.fillMaxSize(),
+//                    color = MaterialTheme.colorScheme.background
+//                ) {
+//                    Greeting("Android")
+//                }
+//            }
+//        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

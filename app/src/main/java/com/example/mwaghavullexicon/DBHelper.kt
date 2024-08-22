@@ -139,6 +139,11 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
             Log.e("DBHelper", "Invalid dictionary type: ")
             return words
         }
+        // Check if tableName is empty
+        if (tableName.isEmpty()) {
+            Log.e("DBHelper", "Table name is empty.")
+            return words
+        }
 
         // Pagination Logic
         val cursor = db.rawQuery("SELECT * FROM $tableName LIMIT $limit OFFSET $offset", null)
@@ -230,7 +235,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     }
 
     private fun getTableName(dicType: Int): String {
-        var tableName = ""
+        var tableName = ENG_MWA_TABLE
         Log.d("FATAL", "tableName $tableName")
         when (dicType) {
             R.id.mwaghavul_english -> {
