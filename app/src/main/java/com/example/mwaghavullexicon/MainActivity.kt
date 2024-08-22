@@ -36,54 +36,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
-    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Apply theme before calling super.onCreate
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
+        // Set fade-in transition
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
-        installSplashScreen().apply{
-            setKeepOnScreenCondition{
-                !viewModel.isReady.value
-            }
-//            setOnExitAnimationListener{ screen ->
-//                val zoomX = ObjectAnimator.ofFloat(
-//                    screen.iconView,
-//                    View.SCALE_X,
-//                    0.4f,
-//                    0.0f
-//                )
-//                zoomX.interpolator = OvershootInterpolator()
-//                zoomX.duration = 500L
-//                zoomX.doOnEnd{screen.remove()}
-//
-//                val zoomY = ObjectAnimator.ofFloat(
-//                    screen.iconView,
-//                    View.SCALE_X,
-//                    0.4f,
-//                    0.0f
-//                )
-//                zoomY.interpolator = OvershootInterpolator()
-//                zoomY.duration = 500L
-//                zoomY.doOnEnd{screen.remove()}
-//
-//                zoomX.start()
-//                zoomY.start()
-//            }
-        }
-
-////        // Use setContent for Jetpack Compose UI
-//        setContent {
-//            MwaghavulLexiconTheme() {
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Greeting("Android")
-//                }
-//            }
-//        }
+        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

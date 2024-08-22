@@ -6,5 +6,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <!-- Splash screen theme -->
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
 </resources>
