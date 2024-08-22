@@ -11,6 +11,10 @@
     <color name="colorPrimaryDark">#327334</color>
     <color name="colorAsh">#E4E3E3</color>
     <color name="colorPrimaryDark_Transparent">#8A327334</color>
+    <color name="colorSplashDark_Transparent">#B7000000</color>
+    <color name="colorSplashLight_Transparent">#8ADFFBDF</color>
+    <color name="colorSplashDark">#202420</color>
+    <color name="colorSplashLight">#DEFADE</color>
     <color name="colorBackground">#EDEFF4</color>
     <color name="colorAccent">#FBE202</color>
 </resources>
