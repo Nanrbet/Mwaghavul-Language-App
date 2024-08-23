@@ -31,4 +31,7 @@
     <string name="bookmark_button">bookmark_button</string>
     <string name="new_word">New Word</string>
     <string name="mwaghavul_logo">mwaghavul logo</string>
+    <string name="word_of_the_day">WORD of the DAY</string>
+    <string name="wu_t_ng">wu tàng</string>
+    <string name="close_icon">close_icon</string>
 </resources>

@@ -1,16 +1,10 @@
 package com.example.mwaghavullexicon
 
 import Word
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 class ViewModelFactory(private val dbHelper: DBHelper) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -26,7 +20,7 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
     val words: LiveData<List<Word>> get() = _words
 
     private var offset = 0
-    private val limit = 7
+    private val limit = 100
     private var initialWordsLoaded = false // Flag to track initial load
     private var initialSearchWordsLoaded = false // Flag to track initial load
     init {
@@ -80,17 +74,4 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
         _words.notifyObserver() // Notify observers of the new data
     }
 
-}
-
-class MainViewModel: ViewModel(){
-
-    private val _isReady = MutableStateFlow(false)
-    val isReady = _isReady.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            delay(3000L)
-            _isReady.value = true
-        }
-    }
 }

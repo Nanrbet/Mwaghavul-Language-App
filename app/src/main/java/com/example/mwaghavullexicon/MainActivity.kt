@@ -18,10 +18,8 @@ import com.example.mwaghavullexicon.databinding.ActivityMainBinding
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.google.android.play.core.review.ReviewException
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.review.model.ReviewErrorCode
 
 lateinit var dbHelper: DBHelper
 
@@ -117,7 +115,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_share -> {
                 val currentFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container)
                 if (currentFragment is DetailFragment) {
-                    val selectedWord = (currentFragment as DetailFragment).getSelectedWord()
+                    val selectedWord = currentFragment.getSelectedWord()
                     shareWord(selectedWord)
                 } else {
                     Toast.makeText(this, "Go to search and click a word", Toast.LENGTH_SHORT).show()
@@ -142,6 +140,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             is BookmarkFragment -> binding.toolbar.title = "Bookmark"
             is HistoryFragment -> binding.toolbar.title = "History"
             is HomeFragment -> binding.toolbar.title = "Home"
+            is HelpFragment -> binding.toolbar.title = "Help"
+            is AboutFragment -> binding.toolbar.title = "About page"
         }
         return true
     }
