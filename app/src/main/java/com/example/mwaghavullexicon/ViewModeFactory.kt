@@ -28,6 +28,7 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
     private var offset = 0
     private val limit = 7
     private var initialWordsLoaded = false // Flag to track initial load
+    private var initialSearchWordsLoaded = false // Flag to track initial load
     init {
         _words.value = mutableListOf()
     }
@@ -40,12 +41,12 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
         _words.value = updatedWords
         // Set the flag to true after loading initial words
         initialWordsLoaded = true
+        _words.notifyObserver()
     }
 
     fun loadMoreWords() {
         // Check if initial words have been loaded
         if (!initialWordsLoaded) {
-            Log.d("WordLoader", "Initial words not loaded. Skipping loadMoreWords.")
             return
         }
         offset += limit
@@ -59,6 +60,26 @@ class WordLoader(private val dbHelper: DBHelper) : ViewModel() {
     private fun <T> MutableLiveData<T>.notifyObserver() {
         this.value = this.value
     }
+
+
+    fun searchWords(query: String) {
+        offset = 0 // Reset offset for a new search
+        val searchResults = dbHelper.searchWords(query, limit, offset)
+        _words.value = searchResults.toMutableList()
+        initialSearchWordsLoaded = true
+        _words.notifyObserver()
+    }
+
+    fun loadMoreSearchResults(query: String) {
+        if (!initialSearchWordsLoaded) return // Ensure initial results are loaded
+        offset += limit
+        val moreResults = dbHelper.searchWords(query, limit, offset)
+        val updatedWords = _words.value?.toMutableList() ?: mutableListOf()
+        updatedWords.addAll(moreResults)
+        _words.value = updatedWords // Append new results
+        _words.notifyObserver() // Notify observers of the new data
+    }
+
 }
 
 class MainViewModel: ViewModel(){

@@ -38,6 +38,6 @@ class CustomSplashScreen : AppCompatActivity() {
         animator.setTarget(logo)
         Handler(Looper.getMainLooper()).postDelayed({
             animator.start()
-        }, 700)
+        }, 500)
     }
 }

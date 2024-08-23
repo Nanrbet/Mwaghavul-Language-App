@@ -216,22 +216,27 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
     }
 
 
-    fun searchWord(query: String): Word? {
-        val word : Word? = null
+    fun searchWords(query: String, limit: Int, offset: Int): MutableList<Word> {
+        val words = mutableListOf<Word>()
         db = this.readableDatabase
         val dicType = getDicType()
         val tableName = getTableName(dicType)
         val columnName = getColumnName()
 
-        val cursor = db.rawQuery("SELECT * FROM $tableName WHERE upper([$columnName]) = upper('$query');", null)
-        if (cursor.moveToFirst()) {
-            do {
-                extractWordFromCursor(dicType, cursor)
-            } while (cursor.moveToNext())
+        val normalizedQuery = query.replace(" ", "").uppercase() + "%"
+
+        val cursor = db.rawQuery("SELECT * FROM $tableName WHERE REPLACE(UPPER($columnName), ' ', '') COLLATE NOACCENTS LIKE upper('$normalizedQuery%') LIMIT $limit OFFSET $offset;", null)
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    words.add(extractWordFromCursor(dicType, cursor))
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
         }
-        cursor.close()
-        db.close()
-        return word
+        return words
     }
 
     private fun getTableName(dicType: Int): String {
@@ -284,6 +289,7 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
             db.close()
         }
     }
+
     fun removeFromTable(word: Word, tableName: String) {
         db = this.writableDatabase
         try {
@@ -304,17 +310,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         cursor.close()
 
         return isBookmarked
-    }
-
-    fun isWordInBookmark(word: Word): Boolean {
-        val db = this.readableDatabase
-
-        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE WHERE id = ? AND upper($COLUMN_TERM) = upper(?) AND upper($COLUMN_POS) = upper(?) AND upper($COLUMN_PRONUNCIATION) = upper(?) AND upper($COLUMN_DEFINITION) = upper(?) AND upper($COLUMN_EXAMPLES) = upper(?) AND upper($COLUMN_TRANSLATION) = upper(?);",
-            arrayOf(word.id, word.term.uppercase(), word.pos.uppercase(), word.pronunciation.uppercase(), word.definition.uppercase(), word.examples.uppercase(), word.translation.uppercase()))
-        val isFound = cursor.moveToFirst()
-        cursor.close()
-        db.close()
-        return isFound
     }
 
     fun getAllWordsFromTable(tableName: String): List<Word> {
@@ -345,29 +340,6 @@ class DBHelper(private val context: Context, factory: SQLiteDatabase.CursorFacto
         return words
     }
 
-    fun getWordFromBookmark(query: String): Word? {
-        var word: Word? = null
-        val db = this.readableDatabase
-
-        val cursor = db.rawQuery("SELECT * FROM $BOOKMARK_TABLE WHERE upper([$COLUMN_TERM]) = upper('$query');", null)
-        if (cursor.moveToFirst()) {
-            word = Word(
-                term = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TERM)),
-                pl = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PL)),
-                pos = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POS)),
-                pronunciation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRONUNCIATION)),
-                definition = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFINITION)),
-                examples = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAMPLES)),
-                translation = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TRANSLATION)),
-                audio = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AUDIO)),
-                language = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LANGUAGE)),
-                note = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NOTE))
-            )
-        }
-        cursor.close()
-        db.close()
-        return word
-    }
 
     private fun databaseExists(): Boolean {
         val dbFile = File(databaseFullPath)

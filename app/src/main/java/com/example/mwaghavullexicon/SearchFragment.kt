@@ -79,15 +79,17 @@ class SearchFragment() : Fragment()  {
                 // Do nothing
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filterValue(s.toString())
+                adapter.clear()
+                val searchText = s.toString().trim()
+                if (searchText.isNotEmpty()) {
+                    isLoading = true
+                    viewModel.searchWords(searchText) // Search words when text changes
+                }
             }
             override fun afterTextChanged(s: Editable?) {
                 // Do nothing
             }
         })
-
-        // Set up infinite scrolling
-        setupInfiniteScrollListener()
 
         // To clear write up in search box
         val editText = view.findViewById<EditText>(R.id.edit_search)
@@ -98,25 +100,17 @@ class SearchFragment() : Fragment()  {
 
         // To search or return no result
         val searchButton = view.findViewById<ImageView>(R.id.search_button) // Assuming the search button is the "x" button
-        searchButton.setOnClickListener {//TODO: use dbHelper to search words and also update
+        searchButton.setOnClickListener {
             val searchText = editText.text.toString().trim() // Get the search text from the EditText and trim any leading or trailing spaces
-            val adapter = listView.adapter as ArrayAdapter<String> // Assuming you are using an ArrayAdapter<String> for the ListView
-
-            if (adapter.count > 0) {
-                for (i in 0 until adapter.count) {
-                    val item = adapter.getItem(i)
-                    if (item != null) {
-                        if (item.startsWith(searchText, ignoreCase = true)) {
-                            // If a matching item is found, select it in the ListView
-                            listView.setSelection(i)
-                            return@setOnClickListener
-                        }
-                    }
-                }
+            if (searchText.isNotEmpty()) {
+                viewModel.searchWords(searchText)
             }
             // If no match found or the adapter is empty, show "No Results"
             Toast.makeText(requireContext(), "No Results", Toast.LENGTH_SHORT).show()
         }
+
+        // Set up infinite scrolling
+        setupInfiniteScrollListener()
     }
     private fun setupInfiniteScrollListener() {
         listView.setOnScrollListener(object : AbsListView.OnScrollListener {
@@ -134,7 +128,15 @@ class SearchFragment() : Fragment()  {
                     // Load more when reaching the bottom
                     if (lastVisibleItem >= totalItemCount - 10) {
                         isLoading = true
-                        viewModel.loadMoreWords() // Load more words when the user scrolls down
+                        val query = editText.text.toString().trim()
+
+                        if (query.isNotEmpty()) {
+                            // Load more search results
+                            viewModel.loadMoreSearchResults(query)
+                        } else {
+                            // Load more initial words
+                            viewModel.loadMoreWords()
+                        }
                     }
                 }
             }
@@ -188,23 +190,33 @@ class SearchFragment() : Fragment()  {
         return when (item.itemId) {
             R.id.mwaghavul_english -> {
                 Global.saveState(requireActivity(), SELECTED_DICTIONARY_KEY, id.toString())
-                adapterWordList.clear()
-                viewModel.loadInitialWords()
+                loadWordsBasedOnQuery()
                 true
             }
             R.id.english_mwaghavul -> {
                 Global.saveState(requireActivity(), SELECTED_DICTIONARY_KEY, id.toString())
-                adapterWordList.clear()
-                viewModel.loadInitialWords()
+                loadWordsBasedOnQuery()
                 true
             }
             R.id.english_english -> {
                 Global.saveState(requireActivity(), SELECTED_DICTIONARY_KEY, id.toString())
-                adapterWordList.clear()
-                viewModel.loadInitialWords()
+                loadWordsBasedOnQuery()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+    private fun loadWordsBasedOnQuery() {
+        adapter.clear()
+        adapterWordList.clear()
+        val query = editText.text.toString().trim()
+
+        if (query.isEmpty()) {
+            // Load initial words if query is empty
+            viewModel.loadInitialWords()
+        } else {
+            // Load search results if there is a query
+            viewModel.searchWords(query)
         }
     }
 
@@ -241,31 +253,6 @@ class SearchFragment() : Fragment()  {
 
     override fun onDetach() {
         super.onDetach()
-    }
-
-    public fun filterValue(value: String) {
-        adapter.filter.filter(value)
-        val size = adapter.count
-//        for (i in 0 until size) {
-//            if (adapter.getItem(i)?.startsWith(value) == true) {
-//                listView.setSelection(i)
-//                break // If you want to select the first item that starts with the value
-//            }
-//        }
-        //TODO: second search filtered word
-//        // Filter the adapter's data
-//        val filteredList = originalList.filter { word ->
-//            word.term.startsWith(value, ignoreCase = true)
-//        }
-//
-//        // Update the adapter with the filtered list
-//        adapter.updateData(filteredList)
-
-//        // Select the first item that starts with the value
-//        filteredList.firstOrNull()?.let { firstItem ->
-//            val position = adapter.getPosition(firstItem)
-//            listView.setSelection(position)
-//        }
     }
 
 }
