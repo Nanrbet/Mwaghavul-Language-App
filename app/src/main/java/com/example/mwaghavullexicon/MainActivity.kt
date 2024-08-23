@@ -124,12 +124,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             R.id.nav_help -> {
-                Toast.makeText(this, "To Help page", Toast.LENGTH_SHORT).show()
-                // Handle help action
-                // TODO
+                openFragment(HelpFragment(), "Help", false)
             }
             R.id.nav_about -> {
-                openFragment(AboutFragment(), "about", false)
+                openFragment(AboutFragment(), "About", false)
             }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
