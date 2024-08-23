@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
+private var selectedWord: Word? = null
+
 class DetailFragment : Fragment() {
 
     override fun onCreateView(
@@ -25,7 +27,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Retrieve the word from the arguments and display it
-        val selectedWord: Word? = arguments?.getParcelable("selected_word")
+        selectedWord = arguments?.getParcelable("selected_word")
 
         // Find the TextView and set the text
         val textView: TextView = view.findViewById(R.id.term_text)
@@ -55,7 +57,7 @@ class DetailFragment : Fragment() {
         // Bookmark button
         val bookmarkImageButton: ImageButton = view.findViewById(R.id.bookmark_image_btn)
         // Check if the word is bookmarked initially
-        if (selectedWord != null && dbHelper.isBookmarked(selectedWord)) {
+        if (selectedWord != null && dbHelper.isBookmarked(selectedWord!!)) {
             bookmarkImageButton.setImageResource(R.drawable.filled_bookmark_24)
             bookmarkImageButton.tag = 1 // Set tag to indicate bookmarked state
         } else {
@@ -67,13 +69,13 @@ class DetailFragment : Fragment() {
             val currentState = bookmarkImageButton.tag as? Int ?: 0
             bookmarkImageButton.tag = if (currentState == 0) {
                 if (selectedWord != null) {
-                    dbHelper.addWordToTable(selectedWord, BOOKMARK_TABLE)
+                    dbHelper.addWordToTable(selectedWord!!, BOOKMARK_TABLE)
                 }
                 bookmarkImageButton.setImageResource(R.drawable.filled_bookmark_24)
                 1
             } else {
                 if (selectedWord != null) {
-                    dbHelper.removeFromTable(selectedWord, BOOKMARK_TABLE)
+                    dbHelper.removeFromTable(selectedWord!!, BOOKMARK_TABLE)
                 }
                 bookmarkImageButton.setImageResource(R.drawable.outline_bookmark_border_24)
                 0
@@ -109,5 +111,10 @@ class DetailFragment : Fragment() {
         } else {
             translationLabel.visibility = View.GONE
         }
+    }
+
+    // Method to get the selected word
+    fun getSelectedWord(): String {
+        return selectedWord?.term ?: "No word selected"
     }
 }

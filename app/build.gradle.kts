@@ -85,5 +85,5 @@ dependencies {
     implementation ("androidx.compose.material:material:1.5.0")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.5.0")
     implementation ("androidx.activity:activity-compose:1.7.2")
-
+    implementation("com.google.android.play:review-ktx:2.0.1")
 }

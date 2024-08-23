@@ -1,33 +1,27 @@
 package com.example.mwaghavullexicon
 
-import android.animation.ObjectAnimator
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.Surface
-import android.view.View
-import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.Modifier
-import androidx.core.animation.doOnEnd
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.mwaghavullexicon.databinding.ActivityMainBinding
-import com.example.mwaghavullexicon.ui.theme.MwaghavulLexiconTheme
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.android.play.core.review.ReviewException
+import com.google.android.play.core.review.ReviewManager
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.model.ReviewErrorCode
 
 lateinit var dbHelper: DBHelper
 
@@ -36,6 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var reviewManager: ReviewManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Apply theme before calling super.onCreate
@@ -48,6 +43,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        reviewManager = ReviewManagerFactory.create(this)
 
         // Initialize components that require context here
         MobileAds.initialize(this) { }
@@ -115,14 +112,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_rate -> {
-                Toast.makeText(this, "To Rating page", Toast.LENGTH_SHORT).show()
-                // Handle rate action
-                // TODO
+                showRateApp()
             }
             R.id.nav_share -> {
-                Toast.makeText(this, "To Share page", Toast.LENGTH_SHORT).show()
-                // Handle share action
-                // TODO
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container)
+                if (currentFragment is DetailFragment) {
+                    val selectedWord = (currentFragment as DetailFragment).getSelectedWord()
+                    shareWord(selectedWord)
+                } else {
+                    Toast.makeText(this, "Go to search and click a word", Toast.LENGTH_SHORT).show()
+                }
             }
             R.id.nav_help -> {
                 Toast.makeText(this, "To Help page", Toast.LENGTH_SHORT).show()
@@ -163,5 +162,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fragmentTransaction.replace(R.id.main_fragment_container, fragment, tag)
         if (!isTop) fragmentTransaction.addToBackStack(tag)
         fragmentTransaction.commit()
+    }
+
+    private fun shareWord(word: String) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, word)
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(sendIntent, null))
+    }
+
+    private fun showRateApp() {
+        val uri = Uri.parse("market://details?id=$packageName")
+        val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            startActivity(myAppLinkToMarket)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this, "Impossible to find an application for the market", Toast.LENGTH_LONG).show()
+        }
     }
 }
