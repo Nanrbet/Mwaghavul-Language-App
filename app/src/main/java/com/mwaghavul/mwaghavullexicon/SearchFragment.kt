@@ -1,4 +1,4 @@
-package com.example.mwaghavullexicon
+package com.mwaghavul.mwaghavullexicon
 
 import Word
 import android.content.Context

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mwaghavullexicon"
+    namespace = "com.mwaghavul.mwaghavullexicon"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mwaghavullexicon"
+        applicationId = "com.mwaghavul.mwaghavullexicon"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

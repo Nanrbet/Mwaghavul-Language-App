@@ -1,4 +1,4 @@
-package com.example.mwaghavullexicon.ui.theme
+package com.mwaghavul.mwaghavullexicon.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

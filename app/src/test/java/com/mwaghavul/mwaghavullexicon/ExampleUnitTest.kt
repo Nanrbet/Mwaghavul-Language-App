@@ -1,4 +1,4 @@
-package com.example.mwaghavullexicon
+package com.mwaghavul.mwaghavullexicon
 
 import org.junit.Test
 

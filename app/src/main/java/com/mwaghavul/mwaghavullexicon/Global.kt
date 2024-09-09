@@ -1,8 +1,7 @@
-package com.example.mwaghavullexicon
+package com.mwaghavul.mwaghavullexicon
 
 import Word
 import android.content.Context
-import android.util.Log
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar

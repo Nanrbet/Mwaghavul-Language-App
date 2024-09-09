@@ -1,4 +1,4 @@
-package com.example.mwaghavullexicon
+package com.mwaghavul.mwaghavullexicon
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

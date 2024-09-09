@@ -1,11 +1,11 @@
-package com.example.mwaghavullexicon
+package com.mwaghavul.mwaghavullexicon
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.mwaghavullexicon.R.*
+import com.mwaghavul.mwaghavullexicon.R.*
 
 
 class HelpFragment : Fragment() {
