@@ -122,10 +122,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             R.id.nav_help -> {
-                openFragment(HelpFragment(), "Help", false)
+                openFragment(HelpFragment(), "Help page", false)
             }
             R.id.nav_about -> {
-                openFragment(AboutFragment(), "About", false)
+                openFragment(AboutFragment(), "About Us", false)
             }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -140,8 +140,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             is BookmarkFragment -> binding.toolbar.title = "Bookmark"
             is HistoryFragment -> binding.toolbar.title = "History"
             is HomeFragment -> binding.toolbar.title = "Home"
-            is HelpFragment -> binding.toolbar.title = "Help"
-            is AboutFragment -> binding.toolbar.title = "About page"
+            is HelpFragment -> binding.toolbar.title = "Help page"
+            is AboutFragment -> binding.toolbar.title = "About Us"
         }
         return true
     }
@@ -160,6 +160,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fragmentTransaction.replace(R.id.main_fragment_container, fragment, tag)
         if (!isTop) fragmentTransaction.addToBackStack(tag)
         fragmentTransaction.commit()
+
+        // After the fragment transaction, invalidate the options menu
+        invalidateOptionsMenu()
     }
 
     private fun shareWord(word: String) {
