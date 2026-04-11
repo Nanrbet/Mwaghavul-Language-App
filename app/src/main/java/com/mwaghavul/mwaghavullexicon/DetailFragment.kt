@@ -1,6 +1,7 @@
 package com.mwaghavul.mwaghavullexicon
 
 import Word
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,12 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Retrieve the word from the arguments and display it
-        selectedWord = arguments?.getParcelable("selected_word")
+        selectedWord = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable("selected_word", Word::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            arguments?.getParcelable("selected_word")
+        }
 
         // Find the TextView and set the text
         val textView: TextView = view.findViewById(R.id.term_text)

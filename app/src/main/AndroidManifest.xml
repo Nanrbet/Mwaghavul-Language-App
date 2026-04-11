@@ -12,13 +12,15 @@
         android:roundIcon="@mipmap/app_logo_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6846464171095897~1029972339" />
+
         <activity
-            android:name=".CustomSplashScreen"
-            android:theme="@style/SplashScreenTheme"
+            android:name=".MainActivity"
+            android:theme="@style/Theme.App.Starting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +28,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
+        <!-- Keep for now but it's no longer the entry point -->
+        <activity android:name=".CustomSplashScreen" android:exported="false" />
     </application>
 
 </manifest>

@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout-v31/nav_header.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@style/Theme.MwaghavulLexicon</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+        <config>
+          <theme>@item/&lt;item&gt;</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/bookmark_layout_item.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_bookmark.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_detail.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/history_layout_item.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/listview_item.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
+        <config>
+          <theme>@style/Theme.MwaghavulLexicon</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/buttom_nav_menu.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/main_options.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/menu_clear.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+    </layouts>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aa2d96ac-70f2-42ad-a487-b5ec22bbe8b3" name="Changes" comment="Unconventional files upload">
+      <change afterPath="$PROJECT_DIR$/gradle/gradle-daemon-jvm.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/migrations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/512px app LOGO 2024-09-08 215224.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/ML_logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/Screenshot LOGO 2024-09-08 215224.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/mea_logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/mwa_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/mwaghavul-language.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo picture/mwaghavul.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/1000274884-removebg-preview.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (1-200)-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (1-page).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (101-120).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (121-140)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (161-180)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (181-200)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (201-380)-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (21-40).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (221-240)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (241-260)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (261-280)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (281-300)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (301-320)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (321-340)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (341-360)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (361-380)-pages-pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (41-60)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (5-pages).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (61-80)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (81-100)pages.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (only).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/A.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/B.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/C.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/D.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/E.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/F.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/G.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/H.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/I.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/J.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/K.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/L.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/M.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/N.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/O.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/P.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/Q.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/R.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/S.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/T.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/U.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/V.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/W.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/X.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/Y.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/Z.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/eng_dic.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/eng_dic.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/eng_mwa.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/mwa_eng.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/mwaghavul converter script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/test_dic.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/Mwaghavul full_1-380.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/Mwaghavul_dic.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_1-20.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_1-380.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_101-120.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_121-140.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_141-160.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_161-180.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_181-200.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_201-220.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_21-40.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_221-240.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_241-260.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_261-280.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_281-300.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_301-320.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_321-340.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_341-360.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_361-380.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_41-60.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_61-80.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_81-100.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/mwaghavul_dic.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Home_wordOfTheDay_20240908_191946.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Mwa_logo_IntroPage_20240908_191910.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240722_bookmark_page_first.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_English Word Details bookmarked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_History page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_Search page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_Sharing page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_Word Details page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/Side_menu_20240908_193754.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/The best way to learn this language.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayStore/app-release.aab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Home_wordOfTheDay_20240908_191946.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Mwa_logo_IntroPage_20240908_191910.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240721_first_search page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240722_Bookmark_pre-work.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240722_bookmark_page_first.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_About page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Bookmark page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_English Word Details bookmarked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_History page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Home page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Search page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Sharing page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Word Details page.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_first_splashscreen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_side Menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/Side_menu_20240908_193754.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-debug.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/AboutFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/AboutFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/BookmarkFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/BookmarkFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DetailFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/Global.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/Global.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HelpFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HelpFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HistoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HistoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_clear.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_clear.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/syles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/syles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\agent\.android\avd\Pixel_3a_API_36_extension_level_17_x86_64.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Mwaghavul Lexicon" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Mwaghavul Lexicon" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Mwaghavul Lexicon" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Mwaghavul Lexicon" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="layoutResourceFile" />
+        <option value="valueResourceFile" />
+        <option value="Kotlin Class" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="C:\Users\Admin\MwaLexicon_keystore.jks" />
+    <option name="KEY_ALIAS" value="key0" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Nanrbet&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nanrbet/Mwaghavul-Language-App.git&quot;,
+    &quot;accountId&quot;: &quot;4302f679-b316-4510-8198-51230f783359&quot;
+  }
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\agent\.gradle\wrapper\dists\gradle-9.3.1-bin\23ovyewtku6u96viwx3xl3oks\gradle-9.3.1" javaHome="C:\Program Files\Android\Android Studio\jbr" gradleVersion="9.3.1" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2jPkpfjk9iTNF83OwaG7KGJswZ9" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Android App.MainActivity (1).executor": "Run",
+    "Android App.MainActivity.executor": "Run",
+    "Android App.app.executor": "Run",
+    "BundleExportedModule": "Mwaghavul_Lexicon.app",
+    "ExportBundle.BundlePathForMwaghavul_Lexicon.app": "C:\\Users\\Admin\\Documents\\VsCode\\AndroidProjects\\Mwaghavul-Language-App\\app",
+    "Gradle.Configure Daemon JVM Criteria.executor": "Run",
+    "GradleDaemonJvmCriteriaMigrationNotification.isNotificationDisabled": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ScreenshotViewer.SavePath": "C:/Users/Admin/Documents/VsCode/AndroidProjects/Mwaghavul-Language-App/Screenshots",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/Admin/Documents/VsCode/AndroidProjects/Mwaghavul-Language-App/app/src/main/res/drawable",
+    "last_opened_file_path": "C:/Users/agent/Downloads/Mwaghavul-Language-App",
+    "project.structure.last.edited": "Variables",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "com.android.studio.ml.templates",
+    "show.migrate.to.gradle.popup": "false"
+  },
+  "keyToStringList": {
+    "ExportApk.BuildVariants": [
+      "release"
+    ]
+  }
+}]]></component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\VsCode\AndroidProjects\Mwaghavul-Language-App\app\src\main\res\drawable" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\VsCode\AndroidProjects\Mwaghavul-Language-App\app\src\test\java\com\mwaghavul" />
+      <recent name="C:\Users\Admin\Documents\VsCode\AndroidProjects\Mwaghavul-Language-App\app\src\main\java\com\mwaghavul" />
+      <recent name="C:\Users\Admin\Documents\VsCode\AndroidProjects\Mwaghavul-Language-App\app\src\androidTest\java\com\mwaghavul" />
+      <recent name="C:\Users\Admin\Documents\VsCode\AndroidProjects\Mwaghavul-Language-App\app\src\main\res\layout" />
+      <recent name="C:\Users\Admin\Documents\VsCode\AndroidProjects\Mwaghavul-Language-App\app\src\main\res\drawable" />
+    </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="com.example.mwaghavullexicon" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.mwaghavul" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="MainActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
+      <module name="Mwaghavul_Lexicon.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="specific_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="com.mwaghavul.mwaghavullexicon.MainActivity" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="Mwaghavul_Lexicon.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="true" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android App.MainActivity" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa2d96ac-70f2-42ad-a487-b5ec22bbe8b3" name="Changes" comment="" />
+      <created>1721296284395</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721296284395</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added icons to git">
+      <option name="closed" value="true" />
+      <created>1721435198765</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721435198765</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added icons to git">
+      <option name="closed" value="true" />
+      <created>1721435218560</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721435218560</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added menu files to git">
+      <option name="closed" value="true" />
+      <created>1721435253791</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721435253791</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finished first navigation and drawer menu">
+      <option name="closed" value="true" />
+      <created>1721435366676</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1721435366676</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Uploaded drawables">
+      <option name="closed" value="true" />
+      <created>1721604217497</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721604217497</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Uploaded search fragment files">
+      <option name="closed" value="true" />
+      <created>1721604273871</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1721604273871</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Uploaded search fragment files (settings visibility/translation)">
+      <option name="closed" value="true" />
+      <created>1721604350196</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1721604350196</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Uploaded bookmark fragment files (xml, kt)">
+      <option name="closed" value="true" />
+      <created>1721710445836</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1721710445836</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Uploaded bookmark drawables (xml, kt)">
+      <option name="closed" value="true" />
+      <created>1721710490894</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721710490894</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Updated details fragment for bookmark/search">
+      <option name="closed" value="true" />
+      <created>1721710526807</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721710526807</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Updated Bookmark first populated ArrayList and deletion">
+      <option name="closed" value="true" />
+      <created>1721710650196</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721710650196</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updated For filtering">
+      <option name="closed" value="true" />
+      <created>1721971155287</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1721971155287</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Updated For filtering searched words and switching translations">
+      <option name="closed" value="true" />
+      <created>1721971212110</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1721971212110</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Updated for order of drawer">
+      <option name="closed" value="true" />
+      <created>1722213346076</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1722213346076</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Updated started SQLite integration">
+      <option name="closed" value="true" />
+      <created>1722213386414</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1722213386414</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Updated SQLite integration to display array/List/Words of Search">
+      <option name="closed" value="true" />
+      <created>1723077237827</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1723077237827</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Updated extracted csv">
+      <option name="closed" value="true" />
+      <created>1723077297285</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1723077297285</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Updated all new resources">
+      <option name="closed" value="true" />
+      <created>1723077327189</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1723077327189</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Updated SQLite integration to display array/List/Words of Search">
+      <option name="closed" value="true" />
+      <created>1723350116212</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1723350116212</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Modification and Review of Search, selection of tables and SharedPreference Refactor">
+      <option name="closed" value="true" />
+      <created>1723611670741</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723611670741</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Updated AdMob for Google">
+      <option name="closed" value="true" />
+      <created>1723744242792</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1723744242792</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Updated for proper use of dictype from SharedPreference, Global">
+      <option name="closed" value="true" />
+      <created>1723744285486</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723744285486</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Updated for searchFragment display and use of Live Scrolling and Adapter">
+      <option name="closed" value="true" />
+      <created>1723744333914</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723744333914</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Updated for searchFragment display and use of Live Scrolling and Adapter">
+      <option name="closed" value="true" />
+      <created>1723744340805</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1723744340805</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Completed OnScroll for searchFragment to display words in chunks from db and use of Live Scrolling and Adapter">
+      <option name="closed" value="true" />
+      <created>1723950742219</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1723950742219</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Completed DetailFragment to display the word in full and set visibility for what is available correctly">
+      <option name="closed" value="true" />
+      <created>1723984417998</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1723984417998</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Completed setting the DetailFragment to show bookmark, setting on click listener and working with database">
+      <option name="closed" value="true" />
+      <created>1723989496265</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1723989496265</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Completed BookmarkFragment to get and display the bookmarked words">
+      <option name="closed" value="true" />
+      <created>1723995996760</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1723995996760</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Completed HistoryFragment, history adapter and the xml look of history words clicked from the SearchFragment. Also modified DBHelper to generalTable add, get and display the words">
+      <option name="closed" value="true" />
+      <created>1724003397992</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1724003397992</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Modified dbHelper to use general functions to get and add to db Table, made tables global">
+      <option name="closed" value="true" />
+      <created>1724117757724</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1724117757724</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Completed Home page to display a word of the day and refresh it but not change the default word of the day.">
+      <option name="closed" value="true" />
+      <created>1724132505670</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1724132505670</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Completed Home page to display a word of the day and refresh it but not change the default word of the day.">
+      <option name="closed" value="true" />
+      <created>1724133034701</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1724133034701</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Updated Home page color">
+      <option name="closed" value="true" />
+      <created>1724155608536</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1724155608536</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Updated Background color and DB Global">
+      <option name="closed" value="true" />
+      <created>1724158224719</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1724158224719</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Updated Cardview corners">
+      <option name="closed" value="true" />
+      <created>1724159506945</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1724159506945</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Working on Splashscreen">
+      <option name="closed" value="true" />
+      <created>1724284680085</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1724284680085</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Working on Splashscreen, added check for empty tableName and made a flag to run initialLoad before loadMore">
+      <option name="closed" value="true" />
+      <created>1724335092460</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1724335092461</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Splashscreen all created resources">
+      <option name="closed" value="true" />
+      <created>1724355036874</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1724355036874</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Finished Splashscreen Custom and app logo">
+      <option name="closed" value="true" />
+      <created>1724355142984</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1724355142984</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Finished Splashscreen timing the Custom and app logo">
+      <option name="closed" value="true" />
+      <created>1724363705523</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1724363705523</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Finished working on Searching words; modifying database, onScroll query, accented words (dbHelper, WordAdapter)">
+      <option name="closed" value="true" />
+      <created>1724376497696</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1724376497696</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Finished working on rate and share navigations">
+      <option name="closed" value="true" />
+      <created>1724379848703</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1724379848703</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Finished working on AboutFragment and HelpFragment">
+      <option name="closed" value="true" />
+      <created>1724381338286</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1724381338286</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Finished working on Home and Search Fragment. added Limit for query on db">
+      <option name="closed" value="true" />
+      <created>1724384089434</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1724384089434</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Updated Screenshots">
+      <option name="closed" value="true" />
+      <created>1724385148919</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1724385148920</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Created aap, Modified side menu and Updated Screenshots">
+      <option name="closed" value="true" />
+      <created>1725847507880</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1725847507881</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Changed the package name from com.example to com.mwaghavul">
+      <option name="closed" value="true" />
+      <created>1725865060946</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1725865060947</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Uncomventional files upload">
+      <option name="closed" value="true" />
+      <created>1725865091936</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1725865091936</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Uncomventional files upload">
+      <option name="closed" value="true" />
+      <created>1725866868938</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1725866868938</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Completed OnScroll for searchFragment to display words in chunks from db and use of Live Scrolling and Adapter" />
+    <MESSAGE value="Completed DetailFragment to display the word in full and set visibility for what is available correctly" />
+    <MESSAGE value="Completed setting the DetailFragment to show bookmark, setting on click listener and working with database" />
+    <MESSAGE value="Completed BookmarkFragment to get and display the bookmarked words" />
+    <MESSAGE value="Completed HistoryFragment, history adapter and the xml look of history words clicked from the SearchFragment. Also modified DBHelper to generalTable add, get and display the words" />
+    <MESSAGE value="Modified dbHelper to use general functions to get and add to db Table, made tables global" />
+    <MESSAGE value="Completed Home page to display a word of the day and refresh it but not change the default word of the day." />
+    <MESSAGE value="Updated Home page color" />
+    <MESSAGE value="Updated Background color" />
+    <MESSAGE value="Updated Background color and DB Global" />
+    <MESSAGE value="Updated Cardview corners" />
+    <MESSAGE value="Working on Splashscreen" />
+    <MESSAGE value="Working on Splashscreen, added check for empty tableName and made a flag to run initialLoad before loadMore" />
+    <MESSAGE value="Finished working on Splashscreen animation to rotate 360 at center" />
+    <MESSAGE value="Splashscreen all created resources" />
+    <MESSAGE value="Finished Splashscreen Custom and app logo" />
+    <MESSAGE value="Finished Splashscreen timing the Custom and app logo" />
+    <MESSAGE value="Finished working on Searching words; modifying database, onScroll query, accented words (dbHelper, WordAdapter)" />
+    <MESSAGE value="Finished working on rate and share navigations" />
+    <MESSAGE value="Finished working on AboutFragment and HelpFragment" />
+    <MESSAGE value="Finished working on Home and Search Fragment. added Limit for query on db" />
+    <MESSAGE value="Updated Screenshots" />
+    <MESSAGE value="Created aap, Modified side menu and Updated Screenshots" />
+    <MESSAGE value="Changed the package name from com.example to com.mwaghavul" />
+    <MESSAGE value="Uncomventional files upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uncomventional files upload" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt</url>
+          <line>112</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt</url>
+          <line>124</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/WordAdapter.kt</url>
+          <line>25</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/WordAdapter.kt</url>
+          <line>39</line>
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt</url>
+          <line>51</line>
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt</url>
+          <line>56</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt</url>
+          <line>158</line>
+          <option name="timeStamp" value="140" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/ViewModeFactory.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/ViewModeFactory.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="147" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/ViewModeFactory.kt</url>
+          <line>46</line>
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/ViewModeFactory.kt</url>
+          <line>48</line>
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt</url>
+          <line>148</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt</url>
+          <line>133</line>
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/SearchFragment.kt</url>
+          <line>70</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/SearchFragment.kt</url>
+          <line>165</line>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="play_dynamic_filters_status">
+    <option name="appIdToCheckInfo">
+      <map>
+        <entry key="com.mwaghavul.mwaghavullexicon">
+          <value>
+            <CheckInfo lastCheckTimestamp="1775527602345" />
+          </value>
+        </entry>
+        <entry key="com.mwaghavul.mwaghavullexicon.test">
+          <value>
+            <CheckInfo lastCheckTimestamp="1775527602345" />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

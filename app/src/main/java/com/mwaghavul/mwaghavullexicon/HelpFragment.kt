@@ -1,11 +1,17 @@
 package com.mwaghavul.mwaghavullexicon
+
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import com.mwaghavul.mwaghavullexicon.R.*
+import androidx.lifecycle.Lifecycle
 
 
 class HelpFragment : Fragment() {
@@ -14,15 +20,29 @@ class HelpFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(layout.fragment_help, container, false)
+        return inflater.inflate(R.layout.fragment_help, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupMenu()
 
         // Set up the help content
         val helpContent = view.findViewById<TextView>(R.id.help_content)
         helpContent.text = helpText
+    }
+
+    private fun setupMenu() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.main_options, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return false
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private val helpText: String

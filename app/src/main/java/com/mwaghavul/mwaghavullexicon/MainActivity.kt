@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -31,13 +32,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var reviewManager: ReviewManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Apply theme before calling super.onCreate
-        setTheme(R.style.AppTheme)
+        // Install modern Splash Screen before super.onCreate
+        installSplashScreen()
+        
         super.onCreate(savedInstanceState)
-        // Set fade-in transition
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-
-        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -80,12 +78,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             true
         }
         fragmentManager = supportFragmentManager
-        openFragment(HomeFragment(), "home", true)
-        bottomNavigationView = findViewById(R.id.buttom_navigation)
-        // Load the default fragment
+        
+        // Load default fragment if not already restored
         if (savedInstanceState == null) {
-            bottomNavigationView.selectedItemId = R.id.nav_home
+            openFragment(HomeFragment(), "home", true)
+            binding.buttomNavigation.selectedItemId = R.id.nav_home
         }
+        
+        bottomNavigationView = findViewById(R.id.buttom_navigation)
+
         // Register the custom OnBackPressedCallback
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -95,8 +96,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val fragmentManager = supportFragmentManager
                     if (fragmentManager.backStackEntryCount > 1) {
                         fragmentManager.popBackStack()
-                        val currentFragment = fragmentManager.fragments.last()
-                        updateBottomNavigation(currentFragment)
+                        val currentFragment = fragmentManager.fragments.lastOrNull()
+                        if (currentFragment != null) {
+                            updateBottomNavigation(currentFragment)
+                        }
                     } else if (fragmentManager.backStackEntryCount == 1) {
                         fragmentManager.popBackStack()
                     } else {
