@@ -97,153 +97,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa2d96ac-70f2-42ad-a487-b5ec22bbe8b3" name="Changes" comment="Unconventional files upload">
-      <change afterPath="$PROJECT_DIR$/gradle/gradle-daemon-jvm.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/migrations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/512px app LOGO 2024-09-08 215224.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/ML_logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/Screenshot LOGO 2024-09-08 215224.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/mea_logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/mwa_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/mwaghavul-language.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo picture/mwaghavul.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/1000274884-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (1-200)-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (1-page).pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (101-120).pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (121-140)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (161-180)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (181-200)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (201-380)-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (21-40).pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (221-240)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (241-260)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (261-280)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (281-300)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (301-320)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (321-340)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (341-360)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (361-380)-pages-pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (41-60)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (5-pages).pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (61-80)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (81-100)pages.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Extracted pdf/Mwaghavul_Dictionary (only).pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/A.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/B.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/C.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/D.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/E.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/F.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/G.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/H.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/I.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/J.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/K.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/L.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/M.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/N.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/O.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/P.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/Q.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/R.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/S.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/T.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/U.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/V.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/W.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/X.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/Y.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/Z.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/Dictionary in csv/eng_dic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/eng_dic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/eng_mwa.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/mwa_eng.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/mwaghavul converter script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/English dictionary extraction/test_dic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/Mwaghavul full_1-380.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/Mwaghavul_dic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_1-20.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_1-380.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_101-120.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_121-140.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_141-160.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_161-180.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_181-200.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_201-220.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_21-40.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_221-240.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_241-260.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_261-280.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_281-300.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_301-320.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_321-340.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_341-360.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_361-380.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_41-60.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_61-80.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/Mwaghavul pdf Combined extraction/docsumo_81-100.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDF Extraction/Mwaghavul csv extracted/mwaghavul_dic.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Home_wordOfTheDay_20240908_191946.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Mwa_logo_IntroPage_20240908_191910.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240722_bookmark_page_first.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_English Word Details bookmarked.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_History page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_Search page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_Sharing page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Screenshot_20240822_Word Details page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/Side_menu_20240908_193754.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/The best way to learn this language.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayStore/app-release.aab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Home_wordOfTheDay_20240908_191946.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Mwa_logo_IntroPage_20240908_191910.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240721_first_search page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240722_Bookmark_pre-work.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240722_bookmark_page_first.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_About page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Bookmark page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_English Word Details bookmarked.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_History page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Home page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Search page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Sharing page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_Word Details page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_first_splashscreen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Screenshot_20240822_side Menu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshots/Side_menu_20240908_193754.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-debug.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/AboutFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/AboutFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/BookmarkFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/BookmarkFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DBHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/DetailFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/Global.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/Global.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HelpFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HelpFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HistoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HistoryFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/SearchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_clear.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_clear.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/syles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/syles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,6 +167,7 @@
     <option name="KEY_STORE_PATH" value="C:\Users\Admin\MwaLexicon_keystore.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -351,6 +206,7 @@
     "Android App.MainActivity (1).executor": "Run",
     "Android App.MainActivity.executor": "Run",
     "Android App.app.executor": "Run",
+    "ApkExportedModule": "Mwaghavul_Lexicon.app",
     "BundleExportedModule": "Mwaghavul_Lexicon.app",
     "ExportBundle.BundlePathForMwaghavul_Lexicon.app": "C:\\Users\\Admin\\Documents\\VsCode\\AndroidProjects\\Mwaghavul-Language-App\\app",
     "Gradle.Configure Daemon JVM Criteria.executor": "Run",

@@ -9,6 +9,10 @@ gitignore
 .cxx
 .kotlin/
 
+# Signing files (Keep these out of public GitHub)
+*.jks
+*.keystore
+signing.properties
 
 # Built-in Gradle files that should stay (Keep these)
 !gradle-wrapper.jar
