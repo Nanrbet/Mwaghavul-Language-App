@@ -96,20 +96,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa2d96ac-70f2-42ad-a487-b5ec22bbe8b3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mwaghavul/mwaghavullexicon/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_bottom_left_corner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_bottom_left_corner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_listview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_listview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_top_right_corner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_top_right_corner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/search_box_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/search_box_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-    </list>
+    <list default="true" id="aa2d96ac-70f2-42ad-a487-b5ec22bbe8b3" name="Changes" comment="Implemented edge-to-edge support and UI layout refinements&#10;&#10;- Enabled edge-to-edge display in `MainActivity` with window inset handling for the toolbar and bottom app bar.&#10;- Updated `MainActivity` to use `supportActionBar` for fragment titles.&#10;- Refined UI layouts in `fragment_search.xml` and `fragment_home.xml`, including improved padding and list spacing.&#10;- Adjusted rounded corner radii across several drawable resources (`rounded_listview`, `rounded_top_right_corner`, etc.).&#10;- Updated `AppTheme` and splash screen theme to explicitly disable the default ActionBar.&#10;- Configured `AppTheme` as the default application theme in `AndroidManifest.xml`." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -189,12 +176,12 @@
     &quot;assignee&quot;: &quot;Nanrbet&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Nanrbet/Mwaghavul-Language-App.git&quot;,
-    &quot;accountId&quot;: &quot;4302f679-b316-4510-8198-51230f783359&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Nanrbet/Mwaghavul-Language-App.git",
+    "accountId": "734f217e-0028-467c-a60f-c777a0b632fb"
   }
-}</component>
+}]]></component>
   <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\agent\.gradle\wrapper\dists\gradle-9.3.1-bin\23ovyewtku6u96viwx3xl3oks\gradle-9.3.1" javaHome="C:\Program Files\Android\Android Studio\jbr" gradleVersion="9.3.1" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -426,14 +413,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721296284395</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added icons to git">
-      <option name="closed" value="true" />
-      <created>1721435198765</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1721435198765</updated>
     </task>
     <task id="LOCAL-00007" summary="Added icons to git">
       <option name="closed" value="true" />
@@ -819,7 +798,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725866868938</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Implemented edge-to-edge support and UI layout refinements&#10;&#10;- Enabled edge-to-edge display in `MainActivity` with window inset handling for the toolbar and bottom app bar.&#10;- Updated `MainActivity` to use `supportActionBar` for fragment titles.&#10;- Refined UI layouts in `fragment_search.xml` and `fragment_home.xml`, including improved padding and list spacing.&#10;- Adjusted rounded corner radii across several drawable resources (`rounded_listview`, `rounded_top_right_corner`, etc.).&#10;- Updated `AppTheme` and splash screen theme to explicitly disable the default ActionBar.&#10;- Configured `AppTheme` as the default application theme in `AndroidManifest.xml`.">
+      <option name="closed" value="true" />
+      <created>1777430521391</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1777430521391</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -841,7 +828,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Completed OnScroll for searchFragment to display words in chunks from db and use of Live Scrolling and Adapter" />
     <MESSAGE value="Completed DetailFragment to display the word in full and set visibility for what is available correctly" />
     <MESSAGE value="Completed setting the DetailFragment to show bookmark, setting on click listener and working with database" />
     <MESSAGE value="Completed BookmarkFragment to get and display the bookmarked words" />
@@ -866,7 +852,8 @@
     <MESSAGE value="Created aap, Modified side menu and Updated Screenshots" />
     <MESSAGE value="Changed the package name from com.example to com.mwaghavul" />
     <MESSAGE value="Uncomventional files upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uncomventional files upload" />
+    <MESSAGE value="Implemented edge-to-edge support and UI layout refinements&#10;&#10;- Enabled edge-to-edge display in `MainActivity` with window inset handling for the toolbar and bottom app bar.&#10;- Updated `MainActivity` to use `supportActionBar` for fragment titles.&#10;- Refined UI layouts in `fragment_search.xml` and `fragment_home.xml`, including improved padding and list spacing.&#10;- Adjusted rounded corner radii across several drawable resources (`rounded_listview`, `rounded_top_right_corner`, etc.).&#10;- Updated `AppTheme` and splash screen theme to explicitly disable the default ActionBar.&#10;- Configured `AppTheme` as the default application theme in `AndroidManifest.xml`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented edge-to-edge support and UI layout refinements&#10;&#10;- Enabled edge-to-edge display in `MainActivity` with window inset handling for the toolbar and bottom app bar.&#10;- Updated `MainActivity` to use `supportActionBar` for fragment titles.&#10;- Refined UI layouts in `fragment_search.xml` and `fragment_home.xml`, including improved padding and list spacing.&#10;- Adjusted rounded corner radii across several drawable resources (`rounded_listview`, `rounded_top_right_corner`, etc.).&#10;- Updated `AppTheme` and splash screen theme to explicitly disable the default ActionBar.&#10;- Configured `AppTheme` as the default application theme in `AndroidManifest.xml`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
