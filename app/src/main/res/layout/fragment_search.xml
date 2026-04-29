@@ -78,7 +78,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Background view with primary red color -->
+    <!-- Background view with primary green color -->
     <FrameLayout
         android:id="@+id/lower_view"
         android:layout_width="0dp"
@@ -94,19 +94,21 @@
             android:layout_height="match_parent"
             android:backgroundTint="@color/colorBackground"
             android:background="@drawable/rounded_top_right_corner"
-            android:padding="16dp"
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Add the content of your main layout here -->
             <ListView
                 android:id="@+id/dictionary_search_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
                 android:visibility="visible"
-                android:paddingTop="4dp"
-                android:divider="@color/colorBackground"
-                android:dividerHeight="6dp"
+                android:paddingBottom="16dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="8dp"
                 android:orientation="vertical" />
 
         </LinearLayout>

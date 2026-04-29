@@ -14,7 +14,8 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
             android:id="@+id/toolbar"
             android:background="@color/colorPrimary"
             android:elevation="4dp"
@@ -25,12 +26,16 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="56dp"
+            android:layout_below="@id/toolbar"
+            android:layout_above="@+id/bottom_nav_container"
             android:id="@+id/main_fragment_container"/>
 
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/bottom_nav_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +44,7 @@
                 app:fabCradleMargin="10dp"
                 app:fabCradleRoundedCornerRadius="50dp">
                 <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/buttom_navigation"
                     app:labelVisibilityMode="selected"

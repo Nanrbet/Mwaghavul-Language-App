@@ -4,7 +4,7 @@
     <item>
         <shape>
             <solid android:color="@color/colorPrimary" />
-            <corners android:bottomLeftRadius="24dp" />
+            <corners android:bottomLeftRadius="32dp" />
         </shape>
     </item>
 </layer-list>

@@ -6,15 +6,24 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+        <!-- Force disable ActionBar at both AppCompat and Platform levels -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <!-- Modern Splash Screen Theme -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <!-- Set the splash screen background, translucent is best for a seamless look -->
+        <!-- Set the splash screen background -->
         <item name="windowSplashScreenBackground">@color/colorPrimary</item>
         <!-- Use your app logo -->
         <item name="windowSplashScreenAnimatedIcon">@mipmap/app_logo</item>
         <!-- Theme to use after the splash screen is gone -->
         <item name="postSplashScreenTheme">@style/AppTheme</item>
+
+        <!-- Force disable ActionBar at splash level -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>
